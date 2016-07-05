@@ -1468,23 +1468,32 @@ namespace GeoQuiz
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b005f
-			public const int FalseButton = 2131427423;
+			// aapt resource value: 0x7f0b0050
+			public const int AnswerTextView = 2131427408;
+			
+			// aapt resource value: 0x7f0b0062
+			public const int CheatButton = 2131427426;
 			
 			// aapt resource value: 0x7f0b0061
-			public const int NextButton = 2131427425;
+			public const int FalseButton = 2131427425;
+			
+			// aapt resource value: 0x7f0b0064
+			public const int NextButton = 2131427428;
+			
+			// aapt resource value: 0x7f0b0063
+			public const int PrevButton = 2131427427;
+			
+			// aapt resource value: 0x7f0b005f
+			public const int QuestionTextView = 2131427423;
+			
+			// aapt resource value: 0x7f0b0051
+			public const int ShowAnswerButton = 2131427409;
 			
 			// aapt resource value: 0x7f0b0060
-			public const int PrevButton = 2131427424;
+			public const int TrueButton = 2131427424;
 			
-			// aapt resource value: 0x7f0b005d
-			public const int QuestionTextView = 2131427421;
-			
-			// aapt resource value: 0x7f0b005e
-			public const int TrueButton = 2131427422;
-			
-			// aapt resource value: 0x7f0b0050
-			public const int action0 = 2131427408;
+			// aapt resource value: 0x7f0b0052
+			public const int action0 = 2131427410;
 			
 			// aapt resource value: 0x7f0b0041
 			public const int action_bar = 2131427393;
@@ -1510,8 +1519,8 @@ namespace GeoQuiz
 			// aapt resource value: 0x7f0b0042
 			public const int action_context_bar = 2131427394;
 			
-			// aapt resource value: 0x7f0b0054
-			public const int action_divider = 2131427412;
+			// aapt resource value: 0x7f0b0056
+			public const int action_divider = 2131427414;
 			
 			// aapt resource value: 0x7f0b0002
 			public const int action_menu_divider = 2131427330;
@@ -1543,14 +1552,14 @@ namespace GeoQuiz
 			// aapt resource value: 0x7f0b002b
 			public const int buttonPanel = 2131427371;
 			
-			// aapt resource value: 0x7f0b0051
-			public const int cancel_action = 2131427409;
+			// aapt resource value: 0x7f0b0053
+			public const int cancel_action = 2131427411;
 			
 			// aapt resource value: 0x7f0b0039
 			public const int checkbox = 2131427385;
 			
-			// aapt resource value: 0x7f0b0057
-			public const int chronometer = 2131427415;
+			// aapt resource value: 0x7f0b0059
+			public const int chronometer = 2131427417;
 			
 			// aapt resource value: 0x7f0b001d
 			public const int collapseActionView = 2131427357;
@@ -1579,8 +1588,8 @@ namespace GeoQuiz
 			// aapt resource value: 0x7f0b001a
 			public const int end = 2131427354;
 			
-			// aapt resource value: 0x7f0b005c
-			public const int end_padder = 2131427420;
+			// aapt resource value: 0x7f0b005e
+			public const int end_padder = 2131427422;
 			
 			// aapt resource value: 0x7f0b0025
 			public const int expand_activities_button = 2131427365;
@@ -1603,14 +1612,14 @@ namespace GeoQuiz
 			// aapt resource value: 0x7f0b0026
 			public const int image = 2131427366;
 			
+			// aapt resource value: 0x7f0b005d
+			public const int info = 2131427421;
+			
+			// aapt resource value: 0x7f0b0057
+			public const int line1 = 2131427415;
+			
 			// aapt resource value: 0x7f0b005b
-			public const int info = 2131427419;
-			
-			// aapt resource value: 0x7f0b0055
-			public const int line1 = 2131427413;
-			
-			// aapt resource value: 0x7f0b0059
-			public const int line3 = 2131427417;
+			public const int line3 = 2131427419;
 			
 			// aapt resource value: 0x7f0b0009
 			public const int listMode = 2131427337;
@@ -1618,8 +1627,8 @@ namespace GeoQuiz
 			// aapt resource value: 0x7f0b0028
 			public const int list_item = 2131427368;
 			
-			// aapt resource value: 0x7f0b0053
-			public const int media_actions = 2131427411;
+			// aapt resource value: 0x7f0b0055
+			public const int media_actions = 2131427413;
 			
 			// aapt resource value: 0x7f0b001b
 			public const int middle = 2131427355;
@@ -1720,8 +1729,8 @@ namespace GeoQuiz
 			// aapt resource value: 0x7f0b0018
 			public const int src_over = 2131427352;
 			
-			// aapt resource value: 0x7f0b0052
-			public const int status_bar_latest_event_content = 2131427410;
+			// aapt resource value: 0x7f0b0054
+			public const int status_bar_latest_event_content = 2131427412;
 			
 			// aapt resource value: 0x7f0b004c
 			public const int submit_area = 2131427404;
@@ -1729,17 +1738,17 @@ namespace GeoQuiz
 			// aapt resource value: 0x7f0b000b
 			public const int tabMode = 2131427339;
 			
-			// aapt resource value: 0x7f0b005a
-			public const int text = 2131427418;
+			// aapt resource value: 0x7f0b005c
+			public const int text = 2131427420;
 			
-			// aapt resource value: 0x7f0b0058
-			public const int text2 = 2131427416;
+			// aapt resource value: 0x7f0b005a
+			public const int text2 = 2131427418;
 			
 			// aapt resource value: 0x7f0b0034
 			public const int textSpacerNoButtons = 2131427380;
 			
-			// aapt resource value: 0x7f0b0056
-			public const int time = 2131427414;
+			// aapt resource value: 0x7f0b0058
+			public const int time = 2131427416;
 			
 			// aapt resource value: 0x7f0b002a
 			public const int title = 2131427370;
@@ -1879,43 +1888,46 @@ namespace GeoQuiz
 			public const int abc_select_dialog_material = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int notification_media_action = 2130903065;
+			public const int Cheat = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int notification_media_cancel_action = 2130903066;
+			public const int notification_media_action = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int notification_template_big_media = 2130903067;
+			public const int notification_media_cancel_action = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int notification_template_big_media_narrow = 2130903068;
+			public const int notification_template_big_media = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int notification_template_lines = 2130903069;
+			public const int notification_template_big_media_narrow = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int notification_template_media = 2130903070;
+			public const int notification_template_lines = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int notification_template_part_chronometer = 2130903071;
+			public const int notification_template_media = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int notification_template_part_time = 2130903072;
+			public const int notification_template_part_chronometer = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int Quiz = 2130903073;
+			public const int notification_template_part_time = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int select_dialog_item_material = 2130903074;
+			public const int Quiz = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int select_dialog_multichoice_material = 2130903075;
+			public const int select_dialog_item_material = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int select_dialog_singlechoice_material = 2130903076;
+			public const int select_dialog_multichoice_material = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int support_simple_spinner_dropdown_item = 2130903077;
+			public const int select_dialog_singlechoice_material = 2130903077;
+			
+			// aapt resource value: 0x7f030026
+			public const int support_simple_spinner_dropdown_item = 2130903078;
 			
 			static Layout()
 			{
@@ -1990,6 +2002,9 @@ namespace GeoQuiz
 			// aapt resource value: 0x7f050014
 			public const int app_name = 2131034132;
 			
+			// aapt resource value: 0x7f050024
+			public const int cheat_button = 2131034148;
+			
 			// aapt resource value: 0x7f05001b
 			public const int correct_toast = 2131034139;
 			
@@ -2001,6 +2016,9 @@ namespace GeoQuiz
 			
 			// aapt resource value: 0x7f05001c
 			public const int incorrect_toast = 2131034140;
+			
+			// aapt resource value: 0x7f050025
+			public const int judgment_toast = 2131034149;
 			
 			// aapt resource value: 0x7f050019
 			public const int next_button = 2131034137;
@@ -2026,11 +2044,17 @@ namespace GeoQuiz
 			// aapt resource value: 0x7f050016
 			public const int question_text = 2131034134;
 			
+			// aapt resource value: 0x7f050023
+			public const int show_answer_button = 2131034147;
+			
 			// aapt resource value: 0x7f050013
 			public const int status_bar_notification_info_overflow = 2131034131;
 			
 			// aapt resource value: 0x7f050017
 			public const int true_button = 2131034135;
+			
+			// aapt resource value: 0x7f050022
+			public const int warning_text = 2131034146;
 			
 			static String()
 			{
