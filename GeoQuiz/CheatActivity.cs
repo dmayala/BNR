@@ -27,14 +27,9 @@ namespace GeoQuiz
 
         public static Intent NewIntent(Context packageContext, bool answerIsTrue)
         {
-            Intent i = new Intent(packageContext, typeof(CheatActivity));
+            var i = new Intent(packageContext, typeof(CheatActivity));
             i.PutExtra(ExtraAnswerIsTrue, answerIsTrue);
             return i;
-        }
-
-        public static bool WasAnswerShown(Intent result)
-        {
-            return result.GetBooleanExtra(ExtraAnswerShown, false);
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -54,9 +49,14 @@ namespace GeoQuiz
             };
         }
 
+        public static bool WasAnswerShown(Intent result)
+        {
+            return result.GetBooleanExtra(ExtraAnswerShown, false);
+        }
+
         private void SetAnswerShownResult(bool isAnswerShown)
         {
-            Intent data = new Intent();
+            var data = new Intent();
             data.PutExtra(ExtraAnswerShown, isAnswerShown);
             SetResult(Result.Ok, data);
         }

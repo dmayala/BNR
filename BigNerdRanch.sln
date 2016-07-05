@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoQuiz", "GeoQuiz\GeoQuiz.csproj", "{627C79B9-CB9D-4136-B978-251053AA113F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CriminalIntent", "CriminalIntent\CriminalIntent.csproj", "{D1135825-8319-46E7-B30C-E85D206DF622}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +15,9 @@ Global
 		{627C79B9-CB9D-4136-B978-251053AA113F}.Debug|x86.Build.0 = Debug|Any CPU
 		{627C79B9-CB9D-4136-B978-251053AA113F}.Release|x86.ActiveCfg = Release|Any CPU
 		{627C79B9-CB9D-4136-B978-251053AA113F}.Release|x86.Build.0 = Release|Any CPU
+		{D1135825-8319-46E7-B30C-E85D206DF622}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D1135825-8319-46E7-B30C-E85D206DF622}.Debug|x86.Build.0 = Debug|Any CPU
+		{D1135825-8319-46E7-B30C-E85D206DF622}.Release|x86.ActiveCfg = Release|Any CPU
+		{D1135825-8319-46E7-B30C-E85D206DF622}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

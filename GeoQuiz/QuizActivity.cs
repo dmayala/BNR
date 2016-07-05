@@ -21,7 +21,7 @@ namespace GeoQuiz
         private Button _cheatButton;
         private TextView _questionTextView;
 
-        private List<Question> _questionBank = new List<Question>() 
+        private readonly List<Question> _questionBank = new List<Question>()
         {
             new Question(Resource.String.question_oceans, true),
             new Question(Resource.String.question_mideast, false),
