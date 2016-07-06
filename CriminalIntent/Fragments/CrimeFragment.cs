@@ -16,6 +16,8 @@ namespace CriminalIntent.Fragments
         private Button _dateButton;
         private CheckBox _solvedCheckBox;
 
+        private CrimeFragment() { }
+
         public static CrimeFragment NewInstance(Guid crimeId)
         {
             Bundle args = new Bundle();

@@ -25,11 +25,25 @@ namespace CriminalIntent.Fragments
             return view;
         }
 
+        public override void OnResume()
+        {
+            base.OnResume();
+            UpdateUI();
+        }
+
         private void UpdateUI()
         {
             var crimes = CrimeLab.Get(this.Activity).Crimes;
-            _adapter = new CrimeAdapter(crimes);
-            _crimeRecyclerView.SetAdapter(_adapter);
+
+            if (_adapter == null)
+            {
+                _adapter = new CrimeAdapter(crimes);
+                _crimeRecyclerView.SetAdapter(_adapter);
+            }
+            else 
+            {
+                _adapter.NotifyDataSetChanged();
+            }
         }
 
         private class CrimeHolder : RecyclerView.ViewHolder
@@ -46,6 +60,11 @@ namespace CriminalIntent.Fragments
                 _titleTextView = itemView.FindViewById<TextView>(Resource.Id.CrimeListItemTitleTextView);
                 _dateTextView = itemView.FindViewById<TextView>(Resource.Id.CrimeListItemDateTextView);
                 _solvedCheckBox = itemView.FindViewById<CheckBox>(Resource.Id.CrimeListItemSolvedCheckBox);
+
+                _solvedCheckBox.CheckedChange += (sender, e) =>
+                {
+                    _crime.Solved = e.IsChecked;
+                };
             }
 
             public void BindCrime(Crime crime)
