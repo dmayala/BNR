@@ -16,7 +16,7 @@ namespace CriminalIntent
             for (int i = 0; i < 100; i++)
             {
                 Crimes.Add(new Crime() { 
-                    Title = $"Crime {i}",
+                    Title = $"Crime #{i}",
                     Solved = (i % 2 == 0)
                 });
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V7.Widget;
@@ -32,17 +33,37 @@ namespace CriminalIntent.Fragments
 
         private class CrimeHolder : RecyclerView.ViewHolder
         {
-            public TextView TitleTextView { get; private set; }
+            private Crime _crime;
+
+            private readonly TextView _titleTextView;
+            private readonly TextView _dateTextView;
+            private readonly CheckBox _solvedCheckBox;
 
             public CrimeHolder(View itemView) : base(itemView)
             {
-                TitleTextView = (TextView) itemView;
+                itemView.Click += OnItemViewClick;
+                _titleTextView = itemView.FindViewById<TextView>(Resource.Id.CrimeListItemTitleTextView);
+                _dateTextView = itemView.FindViewById<TextView>(Resource.Id.CrimeListItemDateTextView);
+                _solvedCheckBox = itemView.FindViewById<CheckBox>(Resource.Id.CrimeListItemSolvedCheckBox);
+            }
+
+            public void BindCrime(Crime crime)
+            {
+                _crime = crime;
+                _titleTextView.Text = _crime.Title;
+                _dateTextView.Text = _crime.Date.ToLongDateString();
+                _solvedCheckBox.Checked = _crime.Solved;
+            }
+
+            private void OnItemViewClick(object sender, EventArgs e)
+            {
+                Toast.MakeText(this.ItemView.Context, $"{_crime.Title} clicked!", ToastLength.Short).Show();
             }
         }
 
         private class CrimeAdapter : RecyclerView.Adapter
         {
-            private List<Crime> _crimes;
+            private readonly List<Crime> _crimes;
 
             public CrimeAdapter(List<Crime> crimes)
             {
@@ -52,15 +73,15 @@ namespace CriminalIntent.Fragments
             public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
             {
                 var layoutInflater = LayoutInflater.From(parent.Context);
-                var view = layoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, parent, false);
+                var view = layoutInflater.Inflate(Resource.Layout.CrimeListItem, parent, false);
                 return new CrimeHolder(view);
             }
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
                 Crime crime = _crimes[position];
-                CrimeHolder ch = holder as CrimeHolder;
-                ch.TitleTextView.Text = crime.Title;
+                var ch = holder as CrimeHolder;
+                ch.BindCrime(crime);
             }
 
             public override int ItemCount
