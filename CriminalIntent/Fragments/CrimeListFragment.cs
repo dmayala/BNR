@@ -6,6 +6,7 @@ using Android.Support.V4.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using CriminalIntent.Activities;
 using CriminalIntent.Models;
 
 namespace CriminalIntent.Fragments
@@ -57,7 +58,9 @@ namespace CriminalIntent.Fragments
 
             private void OnItemViewClick(object sender, EventArgs e)
             {
-                Toast.MakeText(this.ItemView.Context, $"{_crime.Title} clicked!", ToastLength.Short).Show();
+                var context = this.ItemView.Context;
+                var intent = CrimeActivity.NewIntent(context, _crime.Id);
+                context.StartActivity(intent);
             }
         }
 
