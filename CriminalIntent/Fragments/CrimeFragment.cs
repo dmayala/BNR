@@ -4,12 +4,14 @@ using Android.Views;
 using Android.Widget;
 using CriminalIntent.Models;
 
-namespace CriminalIntent
+namespace CriminalIntent.Fragments
 {
     public class CrimeFragment : Fragment
     {
         private Crime _crime;
         private EditText _titleField;
+        private Button _dateButton;
+        private CheckBox _solvedCheckBox;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -25,6 +27,16 @@ namespace CriminalIntent
             _titleField.TextChanged += (sender, e) =>
             {
                 _crime.Title = e.Text.ToString();
+            };
+
+            _dateButton = v.FindViewById<Button>(Resource.Id.CrimeDate);
+            _dateButton.Text = _crime.Date.ToLongDateString();
+            _dateButton.Enabled = false;
+
+            _solvedCheckBox = v.FindViewById<CheckBox>(Resource.Id.CrimeSolved);
+            _solvedCheckBox.CheckedChange += (sender, e) =>
+            {
+                _crime.Solved = e.IsChecked;
             };
 
             return v;

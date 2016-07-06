@@ -1,22 +1,21 @@
-﻿using Android.App;
-using Android.OS;
+﻿using Android.OS;
 using Android.Support.V4.App;
 
-namespace CriminalIntent
+namespace CriminalIntent.Activities
 {
-    [Activity(MainLauncher = true)]
-    public class CrimeActivity : FragmentActivity
+    public abstract class SingleFragmentActivity : FragmentActivity
     {
+        protected abstract Fragment CreateFragment();
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.Crime);
+            SetContentView(Resource.Layout.FragmentActivity);
 
             var fragment = SupportFragmentManager.FindFragmentById(Resource.Id.FragmentContainer);
-
             if (fragment == null)
             {
-                fragment = new CrimeFragment();
+                fragment = CreateFragment();
                 SupportFragmentManager.BeginTransaction()
                                       .Add(Resource.Id.FragmentContainer, fragment)
                                       .Commit();
