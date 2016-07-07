@@ -1513,6 +1513,9 @@ namespace CriminalIntent
 			// aapt resource value: 0x7f06005a
 			public const int FragmentContainer = 2131099738;
 			
+			// aapt resource value: 0x7f060068
+			public const int NewCrimeMenuItem = 2131099752;
+			
 			// aapt resource value: 0x7f06005b
 			public const int action0 = 2131099739;
 			
@@ -1975,6 +1978,22 @@ namespace CriminalIntent
 			}
 		}
 		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0c0000
+			public const int CrimeListFragment = 2131492864;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
+			{
+			}
+		}
+		
 		public partial class String
 		{
 			
@@ -2053,8 +2072,20 @@ namespace CriminalIntent
 			// aapt resource value: 0x7f070019
 			public const int date_picker_title = 2131165209;
 			
+			// aapt resource value: 0x7f07001c
+			public const int hide_subtitle = 2131165212;
+			
+			// aapt resource value: 0x7f07001a
+			public const int new_crime = 2131165210;
+			
+			// aapt resource value: 0x7f07001b
+			public const int show_subtitle = 2131165211;
+			
 			// aapt resource value: 0x7f070013
 			public const int status_bar_notification_info_overflow = 2131165203;
+			
+			// aapt resource value: 0x7f07001d
+			public const int subtitle_format = 2131165213;
 			
 			static String()
 			{

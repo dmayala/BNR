@@ -1,9 +1,10 @@
 ﻿using Android.OS;
 using Android.Support.V4.App;
+using Android.Support.V7.App;
 
 namespace CriminalIntent.Activities
 {
-    public abstract class SingleFragmentActivity : FragmentActivity
+    public abstract class SingleFragmentActivity : AppCompatActivity
     {
         protected abstract Fragment CreateFragment();
 

@@ -16,6 +16,12 @@ namespace CriminalIntent.Fragments
         private RecyclerView _crimeRecyclerView;
         private CrimeAdapter _adapter;
 
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            HasOptionsMenu = true;
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.CrimeListFragment, container, false);
@@ -29,6 +35,28 @@ namespace CriminalIntent.Fragments
         {
             base.OnResume();
             UpdateUI();
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+            inflater.Inflate(Resource.Menu.CrimeListFragment, menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.NewCrimeMenuItem:
+                    var crime = new Crime();
+                    CrimeLab.Get(Activity).AddCrime(crime);
+
+                    var intent = CrimePagerActivity.NewIntent(Activity, crime.Id);
+                    StartActivity(intent);
+                    return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
         }
 
         private void UpdateUI()

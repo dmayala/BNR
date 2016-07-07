@@ -9,17 +9,11 @@ namespace CriminalIntent
     public class CrimeLab
     {
         private static CrimeLab _sCrimeLab;
-        public List<Crime> Crimes { get; private set; } = new List<Crime>();
+        public List<Crime> Crimes { get; private set; }
 
         private CrimeLab(Context context)
         {
-            for (int i = 0; i < 100; i++)
-            {
-                Crimes.Add(new Crime() { 
-                    Title = $"Crime #{i}",
-                    Solved = (i % 2 == 0)
-                });
-            }
+            Crimes = new List<Crime>();
         }
 
         public static CrimeLab Get(Context context)
@@ -30,6 +24,11 @@ namespace CriminalIntent
         public Crime GetCrime(Guid id)
         {
             return Crimes.First(c => c.Id.Equals(id));
+        }
+
+        public void AddCrime(Crime crime)
+        {
+            Crimes.Add(crime);
         }
     }
 }

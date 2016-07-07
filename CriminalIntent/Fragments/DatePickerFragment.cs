@@ -17,8 +17,6 @@ namespace CriminalIntent.Fragments
 
         private DatePicker _datePicker;
 
-        private DatePickerFragment() { }
-
         public static DatePickerFragment NewInstance(DateTime date)
         {
             var args = new Bundle();

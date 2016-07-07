@@ -5,6 +5,7 @@ using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
+using Android.Support.V7.App;
 using CriminalIntent.Fragments;
 using CriminalIntent.Models;
 using Fragment = Android.Support.V4.App.Fragment;
@@ -13,7 +14,7 @@ using FragmentManager = Android.Support.V4.App.FragmentManager;
 namespace CriminalIntent.Activities
 {
     [Activity]
-    public class CrimePagerActivity : FragmentActivity
+    public class CrimePagerActivity : AppCompatActivity
     {
         const string ExtraCrimeId = "la.daya.criminalintent.crime_id";
 
