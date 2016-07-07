@@ -86,7 +86,8 @@ namespace CriminalIntent.Fragments
         {
             var crimeLab = CrimeLab.Get(Activity);
             var crimeCount = crimeLab.Crimes.Count;
-            var subtitle = _subtitleVisible ? GetString(Resource.String.subtitle_format, crimeCount) : null;
+            var subtitle = _subtitleVisible ?
+                Resources.GetQuantityString(Resource.Plurals.subtitle_plural, crimeCount, crimeCount) : null;
 
             var activity = (AppCompatActivity)Activity;
             activity.SupportActionBar.Subtitle = subtitle;

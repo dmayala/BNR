@@ -1987,11 +1987,11 @@ namespace CriminalIntent
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f0c0000
-			public const int CrimeFragment = 2131492864;
+			// aapt resource value: 0x7f0d0000
+			public const int CrimeFragment = 2131558400;
 			
-			// aapt resource value: 0x7f0c0001
-			public const int CrimeListFragment = 2131492865;
+			// aapt resource value: 0x7f0d0001
+			public const int CrimeListFragment = 2131558401;
 			
 			static Menu()
 			{
@@ -1999,6 +1999,22 @@ namespace CriminalIntent
 			}
 			
 			private Menu()
+			{
+			}
+		}
+		
+		public partial class Plurals
+		{
+			
+			// aapt resource value: 0x7f0c0000
+			public const int subtitle_plural = 2131492864;
+			
+			static Plurals()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Plurals()
 			{
 			}
 		}
@@ -2095,9 +2111,6 @@ namespace CriminalIntent
 			
 			// aapt resource value: 0x7f070013
 			public const int status_bar_notification_info_overflow = 2131165203;
-			
-			// aapt resource value: 0x7f07001e
-			public const int subtitle_format = 2131165214;
 			
 			static String()
 			{
