@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
+using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -13,8 +14,11 @@ namespace CriminalIntent.Fragments
 {
     public class CrimeListFragment : Fragment
     {
+        const string SavedSubtitleVisible = "subtitle";
+
         private RecyclerView _crimeRecyclerView;
         private CrimeAdapter _adapter;
+        private bool _subtitleVisible;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -27,6 +31,10 @@ namespace CriminalIntent.Fragments
             var view = inflater.Inflate(Resource.Layout.CrimeListFragment, container, false);
             _crimeRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.CrimeRecyclerView);
             _crimeRecyclerView.SetLayoutManager(new LinearLayoutManager(this.Activity));
+
+            if (savedInstanceState != null)
+                _subtitleVisible = savedInstanceState.GetBoolean(SavedSubtitleVisible);
+            
             UpdateUI();
             return view;
         }
@@ -37,10 +45,20 @@ namespace CriminalIntent.Fragments
             UpdateUI();
         }
 
+        public override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+            outState.PutBoolean(SavedSubtitleVisible, _subtitleVisible);
+        }
+
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             base.OnCreateOptionsMenu(menu, inflater);
             inflater.Inflate(Resource.Menu.CrimeListFragment, menu);
+
+            var subtitleItem = menu.FindItem(Resource.Id.ShowSubtitleMenuItem);
+            subtitleItem.SetTitle(_subtitleVisible ? 
+                                  Resource.String.hide_subtitle : Resource.String.show_subtitle);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -54,9 +72,24 @@ namespace CriminalIntent.Fragments
                     var intent = CrimePagerActivity.NewIntent(Activity, crime.Id);
                     StartActivity(intent);
                     return true;
+                case Resource.Id.ShowSubtitleMenuItem:
+                    _subtitleVisible = !_subtitleVisible;
+                    Activity.InvalidateOptionsMenu();
+                    UpdateSubtitle();
+                    return true;
                 default:
                     return base.OnOptionsItemSelected(item);
             }
+        }
+
+        private void UpdateSubtitle()
+        {
+            var crimeLab = CrimeLab.Get(Activity);
+            var crimeCount = crimeLab.Crimes.Count;
+            var subtitle = _subtitleVisible ? GetString(Resource.String.subtitle_format, crimeCount) : null;
+
+            var activity = (AppCompatActivity)Activity;
+            activity.SupportActionBar.Subtitle = subtitle;
         }
 
         private void UpdateUI()
@@ -72,6 +105,8 @@ namespace CriminalIntent.Fragments
             {
                 _adapter.NotifyDataSetChanged();
             }
+
+            UpdateSubtitle();
         }
 
         private class CrimeHolder : RecyclerView.ViewHolder

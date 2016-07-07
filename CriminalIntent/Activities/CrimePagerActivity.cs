@@ -13,7 +13,7 @@ using FragmentManager = Android.Support.V4.App.FragmentManager;
 
 namespace CriminalIntent.Activities
 {
-    [Activity]
+    [Activity(ParentActivity = typeof(CrimeListActivity))]
     public class CrimePagerActivity : AppCompatActivity
     {
         const string ExtraCrimeId = "la.daya.criminalintent.crime_id";

@@ -1507,14 +1507,20 @@ namespace CriminalIntent
 			// aapt resource value: 0x7f060051
 			public const int CrimeTitle = 2131099729;
 			
+			// aapt resource value: 0x7f060068
+			public const int DeleteCrimeMenuItem = 2131099752;
+			
 			// aapt resource value: 0x7f060059
 			public const int DialogDateDatePicker = 2131099737;
 			
 			// aapt resource value: 0x7f06005a
 			public const int FragmentContainer = 2131099738;
 			
-			// aapt resource value: 0x7f060068
-			public const int NewCrimeMenuItem = 2131099752;
+			// aapt resource value: 0x7f060069
+			public const int NewCrimeMenuItem = 2131099753;
+			
+			// aapt resource value: 0x7f06006a
+			public const int ShowSubtitleMenuItem = 2131099754;
 			
 			// aapt resource value: 0x7f06005b
 			public const int action0 = 2131099739;
@@ -1982,7 +1988,10 @@ namespace CriminalIntent
 		{
 			
 			// aapt resource value: 0x7f0c0000
-			public const int CrimeListFragment = 2131492864;
+			public const int CrimeFragment = 2131492864;
+			
+			// aapt resource value: 0x7f0c0001
+			public const int CrimeListFragment = 2131492865;
 			
 			static Menu()
 			{
@@ -2072,20 +2081,23 @@ namespace CriminalIntent
 			// aapt resource value: 0x7f070019
 			public const int date_picker_title = 2131165209;
 			
-			// aapt resource value: 0x7f07001c
-			public const int hide_subtitle = 2131165212;
+			// aapt resource value: 0x7f07001b
+			public const int delete_crime = 2131165211;
+			
+			// aapt resource value: 0x7f07001d
+			public const int hide_subtitle = 2131165213;
 			
 			// aapt resource value: 0x7f07001a
 			public const int new_crime = 2131165210;
 			
-			// aapt resource value: 0x7f07001b
-			public const int show_subtitle = 2131165211;
+			// aapt resource value: 0x7f07001c
+			public const int show_subtitle = 2131165212;
 			
 			// aapt resource value: 0x7f070013
 			public const int status_bar_notification_info_overflow = 2131165203;
 			
-			// aapt resource value: 0x7f07001d
-			public const int subtitle_format = 2131165213;
+			// aapt resource value: 0x7f07001e
+			public const int subtitle_format = 2131165214;
 			
 			static String()
 			{

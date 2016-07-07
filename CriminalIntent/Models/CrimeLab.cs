@@ -9,7 +9,7 @@ namespace CriminalIntent
     public class CrimeLab
     {
         private static CrimeLab _sCrimeLab;
-        public List<Crime> Crimes { get; private set; }
+        public List<Crime> Crimes { get ; private set; }
 
         private CrimeLab(Context context)
         {
@@ -29,6 +29,11 @@ namespace CriminalIntent
         public void AddCrime(Crime crime)
         {
             Crimes.Add(crime);
+        }
+
+        public void RemoveCrime(Crime crime)
+        {
+            Crimes.Remove(crime);
         }
     }
 }

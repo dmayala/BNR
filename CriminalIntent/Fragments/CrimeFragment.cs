@@ -35,6 +35,7 @@ namespace CriminalIntent.Fragments
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            HasOptionsMenu = true;
             var crimeId = new Guid(this.Arguments.GetString(ArgCrimeId));
             _crime = CrimeLab.Get(this.Activity).GetCrime(crimeId);
         }
@@ -67,6 +68,25 @@ namespace CriminalIntent.Fragments
             };
 
             return v;
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+            inflater.Inflate(Resource.Menu.CrimeFragment, menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.DeleteCrimeMenuItem:
+                    CrimeLab.Get(Activity).RemoveCrime(_crime);
+                    Activity.Finish();
+                    return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
         }
 
         public override void OnActivityResult(int requestCode, int resultCode, Intent data)
