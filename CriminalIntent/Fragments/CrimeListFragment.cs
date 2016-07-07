@@ -78,7 +78,7 @@ namespace CriminalIntent.Fragments
             private void OnItemViewClick(object sender, EventArgs e)
             {
                 var context = this.ItemView.Context;
-                var intent = CrimeActivity.NewIntent(context, _crime.Id);
+                var intent = CrimePagerActivity.NewIntent(context, _crime.Id);
                 context.StartActivity(intent);
             }
         }

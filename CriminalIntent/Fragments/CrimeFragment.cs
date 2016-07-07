@@ -1,15 +1,22 @@
 ﻿using System;
+using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
 using CriminalIntent.Models;
+using Fragment = Android.Support.V4.App.Fragment;
+using FragmentManager = Android.Support.V4.App.FragmentManager;
 
 namespace CriminalIntent.Fragments
 {
     public class CrimeFragment : Fragment
     {
-        public const string ArgCrimeId = "crime_id";
+        const string ArgCrimeId = "crime_id";
+        const string DialogDate = "DialogDate";
+
+        const int RequestDate = 0;
 
         private Crime _crime;
         private EditText _titleField;
@@ -20,7 +27,7 @@ namespace CriminalIntent.Fragments
 
         public static CrimeFragment NewInstance(Guid crimeId)
         {
-            Bundle args = new Bundle();
+            var args = new Bundle();
             args.PutString(ArgCrimeId, crimeId.ToString());
 
             var fragment = new CrimeFragment() { Arguments = args };
@@ -46,8 +53,13 @@ namespace CriminalIntent.Fragments
             };
 
             _dateButton = v.FindViewById<Button>(Resource.Id.CrimeDate);
-            _dateButton.Text = _crime.Date.ToLongDateString();
-            _dateButton.Enabled = false;
+            UpdateDate();
+            _dateButton.Click += (sender, e) =>
+            {
+                var dialog = DatePickerFragment.NewInstance(_crime.Date);
+                dialog.SetTargetFragment(this, RequestDate);
+                dialog.Show(FragmentManager, DialogDate);
+            };
 
             _solvedCheckBox = v.FindViewById<CheckBox>(Resource.Id.CrimeSolved);
             _solvedCheckBox.Checked = _crime.Solved;
@@ -57,6 +69,22 @@ namespace CriminalIntent.Fragments
             };
 
             return v;
+        }
+
+        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        {
+            if (resultCode != (int)Result.Ok) return;
+
+            if (requestCode == RequestDate)
+            {
+                _crime.Date = new DateTime(data.GetLongExtra(DatePickerFragment.ExtraDate, 0));
+                UpdateDate();
+            }
+        }
+
+        private void UpdateDate()
+        {
+            _dateButton.Text = _crime.Date.ToLongDateString();
         }
     }
 }

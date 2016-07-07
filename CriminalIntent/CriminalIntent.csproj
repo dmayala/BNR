@@ -64,10 +64,11 @@
     <Compile Include="Models\Crime.cs" />
     <Compile Include="Models\CrimeLab.cs" />
     <Compile Include="Activities\SingleFragmentActivity.cs" />
-    <Compile Include="Activities\CrimeActivity.cs" />
     <Compile Include="Fragments\CrimeFragment.cs" />
     <Compile Include="Activities\CrimeListActivity.cs" />
     <Compile Include="Fragments\CrimeListFragment.cs" />
+    <Compile Include="Activities\CrimePagerActivity.cs" />
+    <Compile Include="Fragments\DatePickerFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -96,6 +97,8 @@
     <AndroidResource Include="Resources\layout-land\CrimeFragment.axml" />
     <AndroidResource Include="Resources\layout\CrimeListFragment.axml" />
     <AndroidResource Include="Resources\layout\CrimeListItem.axml" />
+    <AndroidResource Include="Resources\layout\CrimePagerActivity.axml" />
+    <AndroidResource Include="Resources\layout\DialogDate.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
