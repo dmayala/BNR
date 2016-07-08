@@ -17,6 +17,7 @@ namespace CriminalIntent.Fragments
         const string SavedSubtitleVisible = "subtitle";
 
         private RecyclerView _crimeRecyclerView;
+        private TextView _emptyView;
         private CrimeAdapter _adapter;
         private bool _subtitleVisible;
 
@@ -29,6 +30,7 @@ namespace CriminalIntent.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.CrimeListFragment, container, false);
+            _emptyView = view.FindViewById<TextView>(Resource.Id.EmptyView);
             _crimeRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.CrimeRecyclerView);
             _crimeRecyclerView.SetLayoutManager(new LinearLayoutManager(this.Activity));
 
@@ -96,6 +98,17 @@ namespace CriminalIntent.Fragments
         private void UpdateUI()
         {
             var crimes = CrimeLab.Get(this.Activity).Crimes;
+
+            if (crimes.Count < 1)
+            {
+                _crimeRecyclerView.Visibility = ViewStates.Gone;
+                _emptyView.Visibility = ViewStates.Visible;
+            }
+            else 
+            {
+                _crimeRecyclerView.Visibility = ViewStates.Visible;
+                _emptyView.Visibility = ViewStates.Gone;
+            }
 
             if (_adapter == null)
             {
