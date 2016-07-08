@@ -4,7 +4,6 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using CriminalIntent.Models;
 using DialogFragment = Android.Support.V4.App.DialogFragment;
 
 namespace CriminalIntent.Fragments

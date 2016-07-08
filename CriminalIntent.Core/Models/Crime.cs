@@ -1,8 +1,11 @@
 ﻿using System;
-namespace CriminalIntent.Models
+using SQLite.Net.Attributes;
+
+namespace CriminalIntent.Core.Models
 {
     public class Crime
     {
+        [PrimaryKey]
         public Guid Id { get; set; }
         public string Title { get; set; }
         public DateTime Date { get; set; }

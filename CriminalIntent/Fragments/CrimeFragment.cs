@@ -5,7 +5,8 @@ using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
-using CriminalIntent.Models;
+using CriminalIntent.Core.Models;
+using CriminalIntent.DAO;
 using Fragment = Android.Support.V4.App.Fragment;
 using FragmentManager = Android.Support.V4.App.FragmentManager;
 
@@ -38,6 +39,12 @@ namespace CriminalIntent.Fragments
             HasOptionsMenu = true;
             var crimeId = new Guid(this.Arguments.GetString(ArgCrimeId));
             _crime = CrimeLab.Get(this.Activity).GetCrime(crimeId);
+        }
+
+        public override void OnPause()
+        {
+            base.OnPause();
+            CrimeLab.Get(Activity).UpdateCrime(_crime);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

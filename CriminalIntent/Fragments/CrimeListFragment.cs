@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V7.App;
@@ -8,7 +7,8 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using CriminalIntent.Activities;
-using CriminalIntent.Models;
+using CriminalIntent.Core.Models;
+using CriminalIntent.DAO;
 
 namespace CriminalIntent.Fragments
 {
@@ -36,7 +36,7 @@ namespace CriminalIntent.Fragments
 
             if (savedInstanceState != null)
                 _subtitleVisible = savedInstanceState.GetBoolean(SavedSubtitleVisible);
-            
+
             UpdateUI();
             return view;
         }
@@ -59,7 +59,7 @@ namespace CriminalIntent.Fragments
             inflater.Inflate(Resource.Menu.CrimeListFragment, menu);
 
             var subtitleItem = menu.FindItem(Resource.Id.ShowSubtitleMenuItem);
-            subtitleItem.SetTitle(_subtitleVisible ? 
+            subtitleItem.SetTitle(_subtitleVisible ?
                                   Resource.String.hide_subtitle : Resource.String.show_subtitle);
         }
 
@@ -104,7 +104,7 @@ namespace CriminalIntent.Fragments
                 _crimeRecyclerView.Visibility = ViewStates.Gone;
                 _emptyView.Visibility = ViewStates.Visible;
             }
-            else 
+            else
             {
                 _crimeRecyclerView.Visibility = ViewStates.Visible;
                 _emptyView.Visibility = ViewStates.Gone;
@@ -115,8 +115,9 @@ namespace CriminalIntent.Fragments
                 _adapter = new CrimeAdapter(crimes);
                 _crimeRecyclerView.SetAdapter(_adapter);
             }
-            else 
+            else
             {
+                _adapter.Crimes = crimes;
                 _adapter.NotifyDataSetChanged();
             }
 
@@ -162,11 +163,11 @@ namespace CriminalIntent.Fragments
 
         private class CrimeAdapter : RecyclerView.Adapter
         {
-            private readonly List<Crime> _crimes;
+            public List<Crime> Crimes { get; set; }
 
             public CrimeAdapter(List<Crime> crimes)
             {
-                _crimes = crimes;
+                Crimes = crimes;
             }
                 
             public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -178,14 +179,14 @@ namespace CriminalIntent.Fragments
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
-                Crime crime = _crimes[position];
+                Crime crime = Crimes[position];
                 var ch = holder as CrimeHolder;
                 ch.BindCrime(crime);
             }
 
             public override int ItemCount
             {
-                get { return _crimes.Count; }
+                get { return Crimes.Count; }
             }
         }
     }

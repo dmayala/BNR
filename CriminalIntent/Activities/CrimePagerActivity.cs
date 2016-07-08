@@ -7,7 +7,9 @@ using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
 using CriminalIntent.Fragments;
-using CriminalIntent.Models;
+using CriminalIntent.Core.Models;
+using CriminalIntent.DAO;
+
 using Fragment = Android.Support.V4.App.Fragment;
 using FragmentManager = Android.Support.V4.App.FragmentManager;
 

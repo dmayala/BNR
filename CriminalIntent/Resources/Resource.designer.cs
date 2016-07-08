@@ -26,6 +26,8 @@ namespace CriminalIntent
 		
 		public static void UpdateIdValues()
 		{
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::CriminalIntent.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::CriminalIntent.Resource.String.Hello;
 		}
 		
 		public partial class Animation
@@ -2025,6 +2027,12 @@ namespace CriminalIntent
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f070015
+			public const int ApplicationName = 2131165205;
+			
+			// aapt resource value: 0x7f070014
+			public const int Hello = 2131165204;
+			
 			// aapt resource value: 0x7f070000
 			public const int abc_action_bar_home_description = 2131165184;
 			
@@ -2082,38 +2090,38 @@ namespace CriminalIntent
 			// aapt resource value: 0x7f070012
 			public const int abc_toolbar_collapse_description = 2131165202;
 			
-			// aapt resource value: 0x7f070014
-			public const int app_name = 2131165204;
-			
-			// aapt resource value: 0x7f070017
-			public const int crime_details_label = 2131165207;
-			
-			// aapt resource value: 0x7f070018
-			public const int crime_solved_label = 2131165208;
-			
-			// aapt resource value: 0x7f070015
-			public const int crime_title_hint = 2131165205;
-			
 			// aapt resource value: 0x7f070016
-			public const int crime_title_label = 2131165206;
+			public const int app_name = 2131165206;
 			
 			// aapt resource value: 0x7f070019
-			public const int date_picker_title = 2131165209;
-			
-			// aapt resource value: 0x7f07001b
-			public const int delete_crime = 2131165211;
-			
-			// aapt resource value: 0x7f07001d
-			public const int hide_subtitle = 2131165213;
+			public const int crime_details_label = 2131165209;
 			
 			// aapt resource value: 0x7f07001a
-			public const int new_crime = 2131165210;
+			public const int crime_solved_label = 2131165210;
 			
-			// aapt resource value: 0x7f07001e
-			public const int no_data_available = 2131165214;
+			// aapt resource value: 0x7f070017
+			public const int crime_title_hint = 2131165207;
+			
+			// aapt resource value: 0x7f070018
+			public const int crime_title_label = 2131165208;
+			
+			// aapt resource value: 0x7f07001b
+			public const int date_picker_title = 2131165211;
+			
+			// aapt resource value: 0x7f07001d
+			public const int delete_crime = 2131165213;
+			
+			// aapt resource value: 0x7f07001f
+			public const int hide_subtitle = 2131165215;
 			
 			// aapt resource value: 0x7f07001c
-			public const int show_subtitle = 2131165212;
+			public const int new_crime = 2131165212;
+			
+			// aapt resource value: 0x7f070020
+			public const int no_data_available = 2131165216;
+			
+			// aapt resource value: 0x7f07001e
+			public const int show_subtitle = 2131165214;
 			
 			// aapt resource value: 0x7f070013
 			public const int status_bar_notification_info_overflow = 2131165203;

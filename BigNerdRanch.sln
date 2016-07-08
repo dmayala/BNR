@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoQuiz", "GeoQuiz\GeoQuiz.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CriminalIntent", "CriminalIntent\CriminalIntent.csproj", "{D1135825-8319-46E7-B30C-E85D206DF622}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CriminalIntent.Core", "CriminalIntent.Core\CriminalIntent.Core.csproj", "{2C2052BA-14F7-418E-9818-099CCA51F73F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,5 +21,9 @@ Global
 		{D1135825-8319-46E7-B30C-E85D206DF622}.Debug|x86.Build.0 = Debug|Any CPU
 		{D1135825-8319-46E7-B30C-E85D206DF622}.Release|x86.ActiveCfg = Release|Any CPU
 		{D1135825-8319-46E7-B30C-E85D206DF622}.Release|x86.Build.0 = Release|Any CPU
+		{2C2052BA-14F7-418E-9818-099CCA51F73F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2C2052BA-14F7-418E-9818-099CCA51F73F}.Debug|x86.Build.0 = Debug|Any CPU
+		{2C2052BA-14F7-418E-9818-099CCA51F73F}.Release|x86.ActiveCfg = Release|Any CPU
+		{2C2052BA-14F7-418E-9818-099CCA51F73F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
