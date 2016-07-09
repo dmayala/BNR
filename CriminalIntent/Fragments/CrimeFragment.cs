@@ -28,6 +28,7 @@ namespace CriminalIntent.Fragments
         private CheckBox _solvedCheckBox;
         private Button _reportButton;
         private Button _suspectButton;
+        private Button _callButton;
 
         public static CrimeFragment NewInstance(Guid crimeId)
         {
@@ -109,6 +110,14 @@ namespace CriminalIntent.Fragments
                 _suspectButton.Enabled = false;
             }
 
+            _callButton = v.FindViewById<Button>(Resource.Id.CrimeCall);
+            _callButton.Enabled = _crime.PhoneNumber != null;
+            _callButton.Click += (sender, e) =>
+            {
+                var i = new Intent(Intent.ActionDial, Android.Net.Uri.Parse("tel:" + _crime.PhoneNumber));
+                StartActivity(i);
+            };
+
             return v;
         }
 
@@ -143,15 +152,40 @@ namespace CriminalIntent.Fragments
             else if (requestCode == RequestContact && data != null)
             {
                 var contactUri = data.Data;
-                var queryFields = new string[] { ContactsContract.Contacts.InterfaceConsts.DisplayName };
+                var queryFields = new string[] { 
+                    ContactsContract.Contacts.InterfaceConsts.DisplayName,
+                    ContactsContract.ContactsColumns.HasPhoneNumber
+                };
                 var c = Activity.ContentResolver.Query(contactUri, queryFields, null, null, null);
                 try
                 {
                     if (c.Count == 0) return;
                     c.MoveToFirst();
                     var suspect = c.GetString(0);
+                    var hasNumber = Convert.ToInt32(c.GetString(1)) > 0;
                     _crime.Suspect = suspect;
                     _suspectButton.Text = suspect;
+
+                    if (hasNumber)
+                    {
+                        var phoneC = Activity.ContentResolver.Query(
+                            ContactsContract.CommonDataKinds.Phone.ContentUri,
+                            new string[] { ContactsContract.CommonDataKinds.Phone.Number },
+                            ContactsContract.ContactsColumns.DisplayName + "=?",
+                            new string[] { suspect },
+                            null
+                        );
+                        using (phoneC)
+                        {
+                            if (phoneC.Count > 0) 
+                            {
+                                phoneC.MoveToFirst();
+                                string number = phoneC.GetString(phoneC.GetColumnIndex(ContactsContract.CommonDataKinds.Phone.Number));
+                                _callButton.Enabled = true;
+                                _crime.PhoneNumber = number;
+                            }
+                        }
+                    }
                 }
                 finally
                 {
@@ -168,7 +202,7 @@ namespace CriminalIntent.Fragments
         private string GetCrimeReport()
         {
             var solvedString = GetString(_crime.Solved ?
-                Resource.String.crime_report_solved : Resource.String.crime_report_solved);
+                Resource.String.crime_report_solved : Resource.String.crime_report_unsolved);
 
             var suspect = _crime.Suspect;
 

@@ -11,6 +11,7 @@ namespace CriminalIntent.Core.Models
         public DateTime Date { get; set; }
         public bool Solved { get; set; }
         public string Suspect { get; set; }
+        public string PhoneNumber { get; set; }
 
         public Crime()
         {
