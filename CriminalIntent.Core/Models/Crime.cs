@@ -10,6 +10,7 @@ namespace CriminalIntent.Core.Models
         public string Title { get; set; }
         public DateTime Date { get; set; }
         public bool Solved { get; set; }
+        public string Suspect { get; set; }
 
         public Crime()
         {

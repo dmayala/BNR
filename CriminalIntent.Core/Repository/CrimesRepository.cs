@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CriminalIntent.Core.Models;
 using SQLite.Net;
 using SQLite.Net.Interop;
@@ -64,8 +65,7 @@ namespace CriminalIntent.Core
             var db = GetConnection();
             using (db)
             {
-                var crimes = db.Query<Crime>("SELECT * FROM Crime");
-                return crimes;
+                return (from i in db.Table<Crime>() select i).ToList();
             }
         }
 

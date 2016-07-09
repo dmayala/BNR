@@ -4,7 +4,6 @@ using System.IO;
 using Android.Content;
 using CriminalIntent.Core;
 using CriminalIntent.Core.Models;
-using SQLite.Net;
 using SQLite.Net.Platform.XamarinAndroid;
 
 namespace CriminalIntent.DAO

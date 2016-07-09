@@ -1,7 +1,9 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
+using Android.Provider;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
@@ -18,11 +20,14 @@ namespace CriminalIntent.Fragments
         const string DialogDate = "DialogDate";
 
         const int RequestDate = 0;
+        const int RequestContact = 1;
 
         private Crime _crime;
         private EditText _titleField;
         private Button _dateButton;
         private CheckBox _solvedCheckBox;
+        private Button _reportButton;
+        private Button _suspectButton;
 
         public static CrimeFragment NewInstance(Guid crimeId)
         {
@@ -74,6 +79,35 @@ namespace CriminalIntent.Fragments
                 _crime.Solved = e.IsChecked;
             };
 
+            _reportButton = v.FindViewById<Button>(Resource.Id.CrimeReport);
+            _reportButton.Click += (sender, e) =>
+            {
+                var intent = new Intent(Intent.ActionSend);
+                intent.SetType("text/plain");
+                intent.PutExtra(Intent.ExtraText, GetCrimeReport());
+                intent.PutExtra(Intent.ExtraSubject, GetString(Resource.String.crime_report_subject));
+                intent = Intent.CreateChooser(intent, GetString(Resource.String.send_report));
+                StartActivity(intent);
+            };
+
+            var pickContact = new Intent(Intent.ActionPick, ContactsContract.Contacts.ContentUri);
+            _suspectButton = v.FindViewById<Button>(Resource.Id.CrimeSuspect);
+            _suspectButton.Click += (sender, e) =>
+            {
+                StartActivityForResult(pickContact, RequestContact);
+            };
+
+            if (_crime.Suspect != null)
+            {
+                _suspectButton.Text = _crime.Suspect;
+            }
+
+            var packageManager = Activity.PackageManager;
+            if (packageManager.ResolveActivity(pickContact, PackageInfoFlags.MatchDefaultOnly) == null)
+            {
+                _suspectButton.Enabled = false;
+            }
+
             return v;
         }
 
@@ -105,11 +139,51 @@ namespace CriminalIntent.Fragments
                 _crime.Date = new DateTime(data.GetLongExtra(DatePickerFragment.ExtraDate, 0));
                 UpdateDate();
             }
+            else if (requestCode == RequestContact && data != null)
+            {
+                var contactUri = data.Data;
+                var queryFields = new string[] { ContactsContract.Contacts.InterfaceConsts.DisplayName };
+                var c = Activity.ContentResolver.Query(contactUri, queryFields, null, null, null);
+                try
+                {
+                    if (c.Count == 0) return;
+                    c.MoveToFirst();
+                    var suspect = c.GetString(0);
+                    _crime.Suspect = suspect;
+                    _suspectButton.Text = suspect;
+                }
+                finally
+                {
+                    c.Close();
+                }
+            }
         }
 
         private void UpdateDate()
         {
             _dateButton.Text = _crime.Date.ToLongDateString();
+        }
+
+        private string GetCrimeReport()
+        {
+            var solvedString = GetString(_crime.Solved ?
+                Resource.String.crime_report_solved : Resource.String.crime_report_solved);
+
+            var suspect = _crime.Suspect;
+
+            if (suspect == null)
+            {
+                suspect = GetString(Resource.String.crime_report_no_suspect);
+            }
+            else 
+            {
+                suspect = GetString(Resource.String.crime_report_suspect, suspect);
+            }
+
+            var report = GetString(Resource.String.crime_report, _crime.Title,
+                                   _crime.Date.ToLongDateString(), solvedString,
+                                   suspect);
+            return report;
         }
     }
 }
