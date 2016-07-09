@@ -12,6 +12,11 @@ namespace CriminalIntent.Core.Models
         public bool Solved { get; set; }
         public string Suspect { get; set; }
         public string PhoneNumber { get; set; }
+        [Ignore]
+        public string PhotoFilename
+        {
+            get {return $"IMG{Id.ToString()}.jpg"; }
+        }
 
         public Crime()
         {

@@ -74,6 +74,7 @@
     <Compile Include="Fragments\CrimeListFragment.cs" />
     <Compile Include="Activities\CrimePagerActivity.cs" />
     <Compile Include="Fragments\DatePickerFragment.cs" />
+    <Compile Include="Utils\PictureUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -94,6 +95,7 @@
     <Folder Include="Fragments\" />
     <Folder Include="Resources\menu\" />
     <Folder Include="Services\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -108,6 +110,7 @@
     <AndroidResource Include="Resources\layout\DialogDate.axml" />
     <AndroidResource Include="Resources\menu\CrimeListFragment.axml" />
     <AndroidResource Include="Resources\menu\CrimeFragment.axml" />
+    <AndroidResource Include="Resources\layout\CameraAndTitleView.axml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CriminalIntent.Core\CriminalIntent.Core.csproj">

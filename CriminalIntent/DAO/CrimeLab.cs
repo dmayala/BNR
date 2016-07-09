@@ -4,6 +4,7 @@ using System.IO;
 using Android.Content;
 using CriminalIntent.Core;
 using CriminalIntent.Core.Models;
+using File = Java.IO.File;
 using SQLite.Net.Platform.XamarinAndroid;
 
 namespace CriminalIntent.DAO
@@ -46,6 +47,13 @@ namespace CriminalIntent.DAO
         public void RemoveCrime(Crime crime)
         {
             _repository.RemoveCrime(crime);
+        }
+
+        public File GetPhotoFile(Crime crime)
+        {
+            var externalFilesDir = _context.GetExternalFilesDir(Android.OS.Environment.DirectoryPictures);
+            if (externalFilesDir == null) return null;
+            return new File(externalFilesDir, crime.PhotoFilename);
         }
     }
 }

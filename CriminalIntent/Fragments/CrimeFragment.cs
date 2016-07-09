@@ -9,6 +9,7 @@ using Android.Views;
 using Android.Widget;
 using CriminalIntent.Core.Models;
 using CriminalIntent.DAO;
+using CriminalIntent.Utils;
 using Fragment = Android.Support.V4.App.Fragment;
 using FragmentManager = Android.Support.V4.App.FragmentManager;
 
@@ -21,14 +22,18 @@ namespace CriminalIntent.Fragments
 
         const int RequestDate = 0;
         const int RequestContact = 1;
+        const int RequestPhoto= 2;
 
         private Crime _crime;
+        private Java.IO.File _photoFile;
         private EditText _titleField;
         private Button _dateButton;
         private CheckBox _solvedCheckBox;
         private Button _reportButton;
         private Button _suspectButton;
         private Button _callButton;
+        private ImageButton _photoButton;
+        private ImageView _photoView;
 
         public static CrimeFragment NewInstance(Guid crimeId)
         {
@@ -43,8 +48,9 @@ namespace CriminalIntent.Fragments
         {
             base.OnCreate(savedInstanceState);
             HasOptionsMenu = true;
-            var crimeId = new Guid(this.Arguments.GetString(ArgCrimeId));
-            _crime = CrimeLab.Get(this.Activity).GetCrime(crimeId);
+            var crimeId = new Guid(Arguments.GetString(ArgCrimeId));
+            _crime = CrimeLab.Get(Activity).GetCrime(crimeId);
+            _photoFile = CrimeLab.Get(Activity).GetPhotoFile(_crime);
         }
 
         public override void OnPause()
@@ -118,6 +124,25 @@ namespace CriminalIntent.Fragments
                 StartActivity(i);
             };
 
+            _photoButton = v.FindViewById<ImageButton>(Resource.Id.CrimeCamera);
+            var captureImage = new Intent(MediaStore.ActionImageCapture);
+            bool canTakePhoto = _photoFile != null && captureImage.ResolveActivity(packageManager) != null;
+            _photoButton.Enabled = canTakePhoto;
+
+            if (canTakePhoto)
+            {
+                var uri = Android.Net.Uri.FromFile(_photoFile);
+                captureImage.PutExtra(MediaStore.ExtraOutput, uri);
+            }
+
+            _photoButton.Click += (sender, e) =>
+            {
+                StartActivityForResult(captureImage, RequestPhoto);
+            };
+
+            _photoView = v.FindViewById<ImageView>(Resource.Id.CrimePhoto);
+            UpdatePhotoView();
+
             return v;
         }
 
@@ -152,7 +177,7 @@ namespace CriminalIntent.Fragments
             else if (requestCode == RequestContact && data != null)
             {
                 var contactUri = data.Data;
-                var queryFields = new string[] { 
+                var queryFields = new string[] {
                     ContactsContract.Contacts.InterfaceConsts.DisplayName,
                     ContactsContract.ContactsColumns.HasPhoneNumber
                 };
@@ -197,6 +222,10 @@ namespace CriminalIntent.Fragments
                     c.Close();
                 }
             }
+            else if (requestCode == RequestPhoto)
+            {
+                UpdatePhotoView();
+            }
         }
 
         private void UpdateDate()
@@ -224,6 +253,19 @@ namespace CriminalIntent.Fragments
                                    _crime.Date.ToLongDateString(), solvedString,
                                    suspect);
             return report;
+        }
+
+        private void UpdatePhotoView()
+        {
+            if (_photoFile == null || !_photoFile.Exists())
+            {
+                _photoView.SetImageDrawable(null);
+            }
+            else
+            {
+                var bitmap = PictureUtils.GetScaledBitmap(_photoFile.Path, Activity);
+                _photoView.SetImageBitmap(bitmap);
+            }
         }
     }
 }
