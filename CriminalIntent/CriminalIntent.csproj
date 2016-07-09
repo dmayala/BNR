@@ -96,6 +96,7 @@
     <Folder Include="Resources\menu\" />
     <Folder Include="Services\" />
     <Folder Include="Utils\" />
+    <Folder Include="Resources\values-sw600dp\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -111,6 +112,9 @@
     <AndroidResource Include="Resources\menu\CrimeListFragment.axml" />
     <AndroidResource Include="Resources\menu\CrimeFragment.axml" />
     <AndroidResource Include="Resources\layout\CameraAndTitleView.axml" />
+    <AndroidResource Include="Resources\layout\TwoPaneActivity.axml" />
+    <AndroidResource Include="Resources\values\Refs.xml" />
+    <AndroidResource Include="Resources\values-sw600dp\Refs.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CriminalIntent.Core\CriminalIntent.Core.csproj">

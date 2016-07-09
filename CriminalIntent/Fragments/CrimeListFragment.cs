@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V7.App;
@@ -20,6 +21,28 @@ namespace CriminalIntent.Fragments
         private TextView _emptyView;
         private CrimeAdapter _adapter;
         private bool _subtitleVisible;
+        private ICallbacks _callbacks;
+
+        /**
+         * Required interface for hosting activities.
+         */
+        public interface ICallbacks
+        {
+            void OnCrimeSelected(Crime crime);
+            void OnCrimeChecked(Crime crime);
+        }
+
+        public override void OnAttach(Context context)
+        {
+            base.OnAttach(context);
+            _callbacks = (ICallbacks)context;
+        }
+
+        public override void OnDetach()
+        {
+            base.OnDetach();
+            _callbacks = null;
+        }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -70,9 +93,8 @@ namespace CriminalIntent.Fragments
                 case Resource.Id.NewCrimeMenuItem:
                     var crime = new Crime();
                     CrimeLab.Get(Activity).AddCrime(crime);
-
-                    var intent = CrimePagerActivity.NewIntent(Activity, crime.Id);
-                    StartActivity(intent);
+                    UpdateUI();
+                    _callbacks.OnCrimeSelected(crime);
                     return true;
                 case Resource.Id.ShowSubtitleMenuItem:
                     _subtitleVisible = !_subtitleVisible;
@@ -95,7 +117,7 @@ namespace CriminalIntent.Fragments
             activity.SupportActionBar.Subtitle = subtitle;
         }
 
-        private void UpdateUI()
+        public void UpdateUI()
         {
             var crimes = CrimeLab.Get(this.Activity).Crimes;
 
@@ -112,7 +134,7 @@ namespace CriminalIntent.Fragments
 
             if (_adapter == null)
             {
-                _adapter = new CrimeAdapter(crimes);
+                _adapter = new CrimeAdapter(this, crimes);
                 _crimeRecyclerView.SetAdapter(_adapter);
             }
             else
@@ -127,21 +149,25 @@ namespace CriminalIntent.Fragments
         private class CrimeHolder : RecyclerView.ViewHolder
         {
             private Crime _crime;
+            private CrimeListFragment _fragment;
 
             private readonly TextView _titleTextView;
             private readonly TextView _dateTextView;
             private readonly CheckBox _solvedCheckBox;
 
-            public CrimeHolder(View itemView) : base(itemView)
+            public CrimeHolder(CrimeListFragment fragment, View itemView) : base(itemView)
             {
+                _fragment = fragment;
                 itemView.Click += OnItemViewClick;
                 _titleTextView = itemView.FindViewById<TextView>(Resource.Id.CrimeListItemTitleTextView);
                 _dateTextView = itemView.FindViewById<TextView>(Resource.Id.CrimeListItemDateTextView);
                 _solvedCheckBox = itemView.FindViewById<CheckBox>(Resource.Id.CrimeListItemSolvedCheckBox);
 
-                _solvedCheckBox.CheckedChange += (sender, e) =>
+                _solvedCheckBox.Click += (sender, e) =>
                 {
-                    _crime.Solved = e.IsChecked;
+                    _crime.Solved = !_crime.Solved;
+                    CrimeLab.Get(itemView.Context).UpdateCrime(_crime);
+                    _fragment._callbacks.OnCrimeChecked(_crime);
                 };
             }
 
@@ -155,26 +181,26 @@ namespace CriminalIntent.Fragments
 
             private void OnItemViewClick(object sender, EventArgs e)
             {
-                var context = this.ItemView.Context;
-                var intent = CrimePagerActivity.NewIntent(context, _crime.Id);
-                context.StartActivity(intent);
+                _fragment._callbacks.OnCrimeSelected(_crime);
             }
         }
 
         private class CrimeAdapter : RecyclerView.Adapter
         {
             public List<Crime> Crimes { get; set; }
+            private CrimeListFragment _fragment;
 
-            public CrimeAdapter(List<Crime> crimes)
+            public CrimeAdapter(CrimeListFragment fragment, List<Crime> crimes)
             {
                 Crimes = crimes;
+                _fragment = fragment;
             }
                 
             public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
             {
                 var layoutInflater = LayoutInflater.From(parent.Context);
                 var view = layoutInflater.Inflate(Resource.Layout.CrimeListItem, parent, false);
-                return new CrimeHolder(view);
+                return new CrimeHolder(_fragment, view);
             }
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)

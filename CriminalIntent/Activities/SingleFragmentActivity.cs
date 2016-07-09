@@ -8,10 +8,15 @@ namespace CriminalIntent.Activities
     {
         protected abstract Fragment CreateFragment();
 
+        protected virtual int GetLayoutResId()
+        {
+            return Resource.Layout.FragmentActivity;
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.FragmentActivity);
+            SetContentView(GetLayoutResId());
 
             var fragment = SupportFragmentManager.FindFragmentById(Resource.Id.FragmentContainer);
             if (fragment == null)

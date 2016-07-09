@@ -34,6 +34,12 @@ namespace CriminalIntent.Fragments
         private Button _callButton;
         private ImageButton _photoButton;
         private ImageView _photoView;
+        private ICallbacks _callbacks;
+
+        public interface ICallbacks
+        {
+            void OnCrimeUpdated(Crime crime);
+        }
 
         public static CrimeFragment NewInstance(Guid crimeId)
         {
@@ -42,6 +48,18 @@ namespace CriminalIntent.Fragments
 
             var fragment = new CrimeFragment() { Arguments = args };
             return fragment;
+        }
+
+        public override void OnAttach(Context context)
+        {
+            base.OnAttach(context);
+            _callbacks = (ICallbacks)context;
+        }
+
+        public override void OnDetach()
+        {
+            base.OnDetach();
+            _callbacks = null;
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -59,6 +77,12 @@ namespace CriminalIntent.Fragments
             CrimeLab.Get(Activity).UpdateCrime(_crime);
         }
 
+        public override void OnResume()
+        {
+            base.OnResume();
+            UpdateUI();
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View v = inflater.Inflate(Resource.Layout.CrimeFragment, container, false);
@@ -68,6 +92,7 @@ namespace CriminalIntent.Fragments
             _titleField.TextChanged += (sender, e) =>
             {
                 _crime.Title = e.Text.ToString();
+                UpdateCrime();
             };
 
             _dateButton = v.FindViewById<Button>(Resource.Id.CrimeDate);
@@ -84,6 +109,7 @@ namespace CriminalIntent.Fragments
             _solvedCheckBox.CheckedChange += (sender, e) =>
             {
                 _crime.Solved = e.IsChecked;
+                UpdateCrime();
             };
 
             _reportButton = v.FindViewById<Button>(Resource.Id.CrimeReport);
@@ -226,6 +252,19 @@ namespace CriminalIntent.Fragments
             {
                 UpdatePhotoView();
             }
+            UpdateCrime();
+        }
+
+        public void UpdateUI()
+        {
+            _crime = CrimeLab.Get(this.Activity).GetCrime(_crime.Id);
+            _solvedCheckBox.Checked = _crime.Solved;
+        }
+
+        private void UpdateCrime()
+        {
+            CrimeLab.Get(Activity).UpdateCrime(_crime);
+            _callbacks.OnCrimeUpdated(_crime);
         }
 
         private void UpdateDate()

@@ -1524,8 +1524,11 @@ namespace CriminalIntent
 			// aapt resource value: 0x7f060053
 			public const int CrimeTitle = 2131099731;
 			
+			// aapt resource value: 0x7f06006f
+			public const int DeleteCrimeMenuItem = 2131099759;
+			
 			// aapt resource value: 0x7f06006e
-			public const int DeleteCrimeMenuItem = 2131099758;
+			public const int DetailFragmentContainer = 2131099758;
 			
 			// aapt resource value: 0x7f06005f
 			public const int DialogDateDatePicker = 2131099743;
@@ -1536,11 +1539,11 @@ namespace CriminalIntent
 			// aapt resource value: 0x7f060060
 			public const int FragmentContainer = 2131099744;
 			
-			// aapt resource value: 0x7f06006f
-			public const int NewCrimeMenuItem = 2131099759;
-			
 			// aapt resource value: 0x7f060070
-			public const int ShowSubtitleMenuItem = 2131099760;
+			public const int NewCrimeMenuItem = 2131099760;
+			
+			// aapt resource value: 0x7f060071
+			public const int ShowSubtitleMenuItem = 2131099761;
 			
 			// aapt resource value: 0x7f060061
 			public const int action0 = 2131099745;
@@ -1865,6 +1868,9 @@ namespace CriminalIntent
 		public partial class Layout
 		{
 			
+			// aapt resource value: 0x7f03002d
+			public const int MasterDetailActivity = 2130903085;
+			
 			// aapt resource value: 0x7f030000
 			public const int abc_action_bar_title_item = 2130903040;
 			
@@ -1996,6 +2002,9 @@ namespace CriminalIntent
 			
 			// aapt resource value: 0x7f03002b
 			public const int support_simple_spinner_dropdown_item = 2130903083;
+			
+			// aapt resource value: 0x7f03002c
+			public const int TwoPaneActivity = 2130903084;
 			
 			static Layout()
 			{

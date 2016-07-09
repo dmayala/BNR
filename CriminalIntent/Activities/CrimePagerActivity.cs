@@ -16,7 +16,7 @@ using FragmentManager = Android.Support.V4.App.FragmentManager;
 namespace CriminalIntent.Activities
 {
     [Activity(ParentActivity = typeof(CrimeListActivity))]
-    public class CrimePagerActivity : AppCompatActivity
+    public class CrimePagerActivity : AppCompatActivity, CrimeFragment.ICallbacks
     {
         const string ExtraCrimeId = "la.daya.criminalintent.crime_id";
 
@@ -42,6 +42,10 @@ namespace CriminalIntent.Activities
 
             var crimeIndex = _crimes.FindIndex(c => c.Id == crimeId);
             _viewPager.CurrentItem = crimeIndex;
+        }
+
+        public void OnCrimeUpdated(Crime crime)
+        {
         }
     }
 
