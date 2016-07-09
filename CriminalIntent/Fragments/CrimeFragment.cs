@@ -177,7 +177,7 @@ namespace CriminalIntent.Fragments
                         );
                         using (phoneC)
                         {
-                            if (phoneC.Count > 0) 
+                            if (phoneC.Count > 0)
                             {
                                 phoneC.MoveToFirst();
                                 string number = phoneC.GetString(phoneC.GetColumnIndex(ContactsContract.CommonDataKinds.Phone.Number));
@@ -185,6 +185,11 @@ namespace CriminalIntent.Fragments
                                 _crime.PhoneNumber = number;
                             }
                         }
+                    }
+                    else
+                    {
+                        _crime.PhoneNumber = null;
+                        _callButton.Enabled = false;
                     }
                 }
                 finally
