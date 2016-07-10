@@ -1,6 +1,4 @@
-﻿using System;
-using Android.App;
-using Android.Support.V4.App;
+﻿using Android.App;
 using CriminalIntent.Core.Models;
 using CriminalIntent.Fragments;
 using Fragment = Android.Support.V4.App.Fragment;

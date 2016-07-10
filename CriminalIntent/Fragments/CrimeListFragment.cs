@@ -7,7 +7,6 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using CriminalIntent.Activities;
 using CriminalIntent.Core.Models;
 using CriminalIntent.DAO;
 

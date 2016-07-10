@@ -11,7 +11,6 @@ using CriminalIntent.Core.Models;
 using CriminalIntent.DAO;
 using CriminalIntent.Utils;
 using Fragment = Android.Support.V4.App.Fragment;
-using FragmentManager = Android.Support.V4.App.FragmentManager;
 
 namespace CriminalIntent.Fragments
 {
