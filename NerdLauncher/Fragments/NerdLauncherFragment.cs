@@ -58,6 +58,7 @@ namespace NerdLauncher.Fragments
         {
             _nameTextView = (TextView)itemView;
             _context = itemView.Context;
+            _nameTextView.Click += OnItemViewClick;
         }
 
         public void BindActivity(ResolveInfo resolveInfo)
@@ -66,6 +67,14 @@ namespace NerdLauncher.Fragments
             var pm = _context.PackageManager;
             var appName = _resolveInfo.LoadLabel(pm);
             _nameTextView.Text = appName;
+        }
+
+        private void OnItemViewClick(object sender, EventArgs e)
+        {
+            var activityInfo = _resolveInfo.ActivityInfo;
+            var i = new Intent(Intent.ActionMain)
+                .SetClassName(activityInfo.ApplicationInfo.PackageName, activityInfo.Name);
+            _context.StartActivity(i);
         }
     }
 
