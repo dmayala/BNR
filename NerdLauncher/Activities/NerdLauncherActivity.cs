@@ -8,6 +8,7 @@ using NerdLauncher.Fragments;
 namespace NerdLauncher.Activities
 {
     [Activity(Label = "NerdLauncher", MainLauncher = true, Icon = "@drawable/icon")]
+    [IntentFilter(new[] { "android.intent.action.MAIN" }, Categories = new[] { "android.intent.category.HOME", "android.intent.category.DEFAULT" })]
     public class NerdLauncherActivity : SingleFragmentActivity
     {
         protected override Fragment CreateFragment()

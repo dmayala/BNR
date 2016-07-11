@@ -73,7 +73,8 @@ namespace NerdLauncher.Fragments
         {
             var activityInfo = _resolveInfo.ActivityInfo;
             var i = new Intent(Intent.ActionMain)
-                .SetClassName(activityInfo.ApplicationInfo.PackageName, activityInfo.Name);
+                .SetClassName(activityInfo.ApplicationInfo.PackageName, activityInfo.Name)
+                .AddFlags(ActivityFlags.NewTask);
             _context.StartActivity(i);
         }
     }
