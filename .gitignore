@@ -39,3 +39,4 @@ Thumbs.db
 #dotCover
 *.dotCover
 /PhotoGallery/Utils/FlickrStrings.cs
+/Components

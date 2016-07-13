@@ -1,4 +1,5 @@
 using Android.Content;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Util;
@@ -6,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using PhotoGallery.Models;
 using PhotoGallery.Utils;
+using Square.Picasso;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -61,16 +63,19 @@ namespace PhotoGallery.Fragments
 
     public class PhotoHolder : RecyclerView.ViewHolder
     {
-        private TextView _titleTextView;
+        private ImageView _itemImageView;
 
         public PhotoHolder(View itemView) : base(itemView)
         {
-            _titleTextView = itemView as TextView;
+            _itemImageView = itemView.FindViewById<ImageView>(Resource.Id.PhotoGalleryImageViewFragment);
         }
 
-        public void BindGalleyItem(GalleryItem item)
+        public void BindGalleyItem(Context context, GalleryItem galleryItem)
         {
-            _titleTextView.Text = item.ToString();
+            Picasso.With(context)
+                .Load(galleryItem.Url)
+                .Placeholder(Resource.Drawable.bill_up_close)
+                .Into(_itemImageView);
         }
     }
 
@@ -97,14 +102,15 @@ namespace PhotoGallery.Fragments
         {
             var photoHolder = holder as PhotoHolder;
             var galleryItem = _galleryItems[position];
-            photoHolder.BindGalleyItem(galleryItem);
+            photoHolder.BindGalleyItem(_context, galleryItem);
             
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            var textView = new TextView(_context);
-            return new PhotoHolder(textView);
+            LayoutInflater inflater = LayoutInflater.From(_context);
+            var view = inflater.Inflate(Resource.Layout.GalleryItem, parent, false);
+            return new PhotoHolder(view);
         }
     }
 }
