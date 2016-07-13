@@ -13,6 +13,9 @@ namespace PhotoGallery.Utils
     public class FlickrFetchr
     {
         const string TAG = "FlickrFetchr";
+        const string FetchRecentsMethod = "flickr.photos.getRecent";
+        const string SearchMethod = "flickr.photos.search";
+        private readonly string _uriBase = $"https://api.flickr.com/services/rest/?api_key={FlickrStrings.ApiKey}&format=json&nojsoncallback=1&extras=url_s";
 
         public async Task<byte[]> GetBytesAsync(string requestUrl)
         {
@@ -30,13 +33,25 @@ namespace PhotoGallery.Utils
             }
         }
 
-        public async Task<IList<GalleryItem>> FetchItems()
+        public async Task<IList<GalleryItem>> FetchRecentPhotosAsync()
+        {
+            var url = BuildUrl(FetchRecentsMethod, null);
+            return await DownloadGalleryItemsAsync(url);
+        }
+
+
+        public async Task<IList<GalleryItem>> SearchPhotosAsync(string query)
+        {
+            var url = BuildUrl(SearchMethod, query);
+            return await DownloadGalleryItemsAsync(url);
+        }
+
+        private async Task<IList<GalleryItem>> DownloadGalleryItemsAsync(string url)
         {
             var items = new List<GalleryItem>();
 
             try
             {
-                var url =$"https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key={FlickrStrings.ApiKey}&format=json&nojsoncallback=1&extras=url_s";
                 var jsonString = await GetStringAsync(url);
                 Log.Info(TAG, "Received JSON: " + jsonString);
                 var response = JsonConvert.DeserializeObject<FlickrResponse>(jsonString);
@@ -47,7 +62,20 @@ namespace PhotoGallery.Utils
             {
                 Log.Error(TAG, "Failed to fetch items", ex.Message);
             }
-            return null;
+            return items;
         }
+
+        private string BuildUrl(string method, string query)
+        {
+            var uri = $"{_uriBase}&method={method}";
+
+            if (method.Equals(SearchMethod))
+            {
+                uri = $"{uri}&text={query}";
+            }
+
+            return uri;
+        }
+
     }
 }

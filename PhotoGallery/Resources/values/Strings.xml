@@ -2,4 +2,6 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">PhotoGallery</string>
+	<string name="search">Search</string>
+	<string name="clear_search">Clear Search</string>
 </resources>

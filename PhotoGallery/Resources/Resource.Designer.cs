@@ -1489,6 +1489,9 @@ namespace PhotoGallery
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f060062
+			public const int ClearMenuItem = 2131099746;
+			
 			// aapt resource value: 0x7f060051
 			public const int FragmentContainer = 2131099729;
 			
@@ -1497,6 +1500,9 @@ namespace PhotoGallery
 			
 			// aapt resource value: 0x7f060060
 			public const int PhotoGalleryRecyclerViewFragment = 2131099744;
+			
+			// aapt resource value: 0x7f060061
+			public const int SearchMenuItem = 2131099745;
 			
 			// aapt resource value: 0x7f060053
 			public const int action0 = 2131099731;
@@ -1951,6 +1957,22 @@ namespace PhotoGallery
 			}
 		}
 		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0c0000
+			public const int PhotoGalleryFragment = 2131492864;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
+			{
+			}
+		}
+		
 		public partial class String
 		{
 			
@@ -2016,6 +2038,12 @@ namespace PhotoGallery
 			
 			// aapt resource value: 0x7f070012
 			public const int abc_toolbar_collapse_description = 2131165202;
+			
+			// aapt resource value: 0x7f070017
+			public const int clear_search = 2131165207;
+			
+			// aapt resource value: 0x7f070016
+			public const int search = 2131165206;
 			
 			// aapt resource value: 0x7f070013
 			public const int status_bar_notification_info_overflow = 2131165203;

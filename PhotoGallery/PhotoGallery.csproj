@@ -104,6 +104,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\FlickrStrings.cs" />
     <Compile Include="Utils\FlickrFetchr.cs" />
+    <Compile Include="Utils\QueryPreferences.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -117,6 +118,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\GalleryItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\PhotoGalleryFragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
