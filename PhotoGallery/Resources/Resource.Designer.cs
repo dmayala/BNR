@@ -1489,8 +1489,8 @@ namespace PhotoGallery
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060062
-			public const int ClearMenuItem = 2131099746;
+			// aapt resource value: 0x7f060063
+			public const int ClearMenuItem = 2131099747;
 			
 			// aapt resource value: 0x7f060051
 			public const int FragmentContainer = 2131099729;
@@ -1498,11 +1498,14 @@ namespace PhotoGallery
 			// aapt resource value: 0x7f060052
 			public const int PhotoGalleryImageViewFragment = 2131099730;
 			
+			// aapt resource value: 0x7f060061
+			public const int PhotoGalleryProgressBar = 2131099745;
+			
 			// aapt resource value: 0x7f060060
 			public const int PhotoGalleryRecyclerViewFragment = 2131099744;
 			
-			// aapt resource value: 0x7f060061
-			public const int SearchMenuItem = 2131099745;
+			// aapt resource value: 0x7f060062
+			public const int SearchMenuItem = 2131099746;
 			
 			// aapt resource value: 0x7f060053
 			public const int action0 = 2131099731;

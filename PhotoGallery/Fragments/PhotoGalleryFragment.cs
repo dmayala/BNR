@@ -20,6 +20,8 @@ namespace PhotoGallery.Fragments
 
         private RecyclerView _photoRecyclerView;
         private SearchView _searchView;
+        private ProgressBar _progressBar;
+
         private IList<GalleryItem> _items = new List<GalleryItem>();
 
         public static PhotoGalleryFragment NewInstance()
@@ -32,8 +34,20 @@ namespace PhotoGallery.Fragments
             base.OnCreate(savedInstanceState);
             RetainInstance = true;
             HasOptionsMenu = true;
-
             UpdateItems();
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            var v = inflater.Inflate(Resource.Layout.PhotoGalleryFragment, container, false);
+            _photoRecyclerView = v.FindViewById<RecyclerView>(Resource.Id.PhotoGalleryRecyclerViewFragment);
+            _photoRecyclerView.SetLayoutManager(new GridLayoutManager(Activity, 3));
+
+            _progressBar = v.FindViewById<ProgressBar>(Resource.Id.PhotoGalleryProgressBar);
+
+            SetupAdapter();
+
+            return v;
         }
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
@@ -78,19 +92,26 @@ namespace PhotoGallery.Fragments
 
         private void UpdateItems()
         {
+            if (IsAdded)
+            {
+                ShowProgressBar(true);
+            }
             var query = QueryPreferences.GetStoredQuery(Activity);
             FetchItemsAsync(query).ConfigureAwait(false);
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        private void ShowProgressBar(bool isShow)
         {
-            var v = inflater.Inflate(Resource.Layout.PhotoGalleryFragment, container, false);
-            _photoRecyclerView = v.FindViewById<RecyclerView>(Resource.Id.PhotoGalleryRecyclerViewFragment);
-            _photoRecyclerView.SetLayoutManager(new GridLayoutManager(Activity, 3));
-
-            SetupAdapter();
-
-            return v;
+            if (isShow)
+            {
+                _progressBar.Visibility = ViewStates.Visible;
+                _photoRecyclerView.Visibility = ViewStates.Invisible;
+            }
+            else
+            {
+                _progressBar.Visibility = ViewStates.Invisible;
+                _photoRecyclerView.Visibility = ViewStates.Visible;
+            }
         }
 
         private void SetupAdapter()
@@ -112,7 +133,11 @@ namespace PhotoGallery.Fragments
             {
                 _items = await ff.SearchPhotosAsync(query);
             }
-    
+
+            if (IsAdded)
+            {
+                ShowProgressBar(false);
+            }
             SetupAdapter();
         }
 
