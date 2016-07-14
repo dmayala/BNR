@@ -1507,6 +1507,9 @@ namespace PhotoGallery
 			// aapt resource value: 0x7f060062
 			public const int SearchMenuItem = 2131099746;
 			
+			// aapt resource value: 0x7f060064
+			public const int TogglePollingMenuItem = 2131099748;
+			
 			// aapt resource value: 0x7f060053
 			public const int action0 = 2131099731;
 			
@@ -2045,11 +2048,23 @@ namespace PhotoGallery
 			// aapt resource value: 0x7f070017
 			public const int clear_search = 2131165207;
 			
+			// aapt resource value: 0x7f07001b
+			public const int new_pictures_text = 2131165211;
+			
+			// aapt resource value: 0x7f07001a
+			public const int new_pictures_title = 2131165210;
+			
 			// aapt resource value: 0x7f070016
 			public const int search = 2131165206;
 			
+			// aapt resource value: 0x7f070018
+			public const int start_polling = 2131165208;
+			
 			// aapt resource value: 0x7f070013
 			public const int status_bar_notification_info_overflow = 2131165203;
+			
+			// aapt resource value: 0x7f070019
+			public const int stop_polling = 2131165209;
 			
 			static String()
 			{

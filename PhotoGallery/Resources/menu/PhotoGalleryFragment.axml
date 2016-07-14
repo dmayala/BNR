@@ -9,4 +9,7 @@
 	<item android:id="@+id/ClearMenuItem"
 		  android:title="@string/clear_search"
 		  app:showAsAction="never" />
+  <item android:id="@+id/TogglePollingMenuItem"
+        android:title="@string/start_polling"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -5,6 +5,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using PhotoGallery.Models;
+using PhotoGallery.Services;
 using PhotoGallery.Utils;
 using Square.Picasso;
 using System.Collections.Generic;
@@ -75,6 +76,16 @@ namespace PhotoGallery.Fragments
             };
 
             _searchView.SetOnSearchClickListener(this);
+
+            var toggleItem = menu.FindItem(Resource.Id.TogglePollingMenuItem);
+            if (PollService.IsServiceAlarmOn(Activity))
+            {
+                toggleItem.SetTitle(Resource.String.stop_polling);
+            }
+            else
+            {
+                toggleItem.SetTitle(Resource.String.start_polling);
+            }
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -84,6 +95,11 @@ namespace PhotoGallery.Fragments
                 case Resource.Id.ClearMenuItem:
                     QueryPreferences.SetStoredQuery(Activity, null);
                     UpdateItems();
+                    return true;
+                case Resource.Id.TogglePollingMenuItem:
+                    bool shouldStartAlarm = !PollService.IsServiceAlarmOn(Activity);
+                    PollService.SetServiceAlarm(Activity, shouldStartAlarm);
+                    Activity.InvalidateOptionsMenu();
                     return true;
                 default:
                     return base.OnOptionsItemSelected(item);               

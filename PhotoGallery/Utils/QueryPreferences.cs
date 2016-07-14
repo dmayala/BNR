@@ -6,6 +6,7 @@ namespace PhotoGallery.Utils
     public class QueryPreferences
     {
         const string PrefSearchQuery = "searchQuery";
+        const string PrefLastResultId = "lastResultId";
 
         public static string GetStoredQuery(Context context)
         {
@@ -18,6 +19,20 @@ namespace PhotoGallery.Utils
             PreferenceManager.GetDefaultSharedPreferences(context)
                 .Edit()
                 .PutString(PrefSearchQuery, query)
+                .Apply();
+        }
+
+        public static string GetLastResultId(Context context)
+        {
+            return PreferenceManager.GetDefaultSharedPreferences(context)
+                .GetString(PrefLastResultId, null);
+        }
+
+        public static void SetLastResultId(Context context, string lastResultId)
+        {
+            PreferenceManager.GetDefaultSharedPreferences(context)
+                .Edit()
+                .PutString(PrefLastResultId, lastResultId)
                 .Apply();
         }
     }
