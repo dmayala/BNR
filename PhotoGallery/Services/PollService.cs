@@ -6,6 +6,8 @@ using PhotoGallery.Models;
 using System.Collections.Generic;
 using Android.Util;
 using Android.OS;
+using PhotoGallery.Activities;
+using Android.Support.V4.App;
 
 namespace PhotoGallery.Services
 {
@@ -13,7 +15,7 @@ namespace PhotoGallery.Services
     public class PollService : IntentService
     {
         const string TAG = "PollService";
-        const int PollInterval = 1000 * 60;
+        const long PollInterval = AlarmManager.IntervalFifteenMinutes;
 
         public static Intent NewIntent(Context context)
         {
@@ -77,6 +79,20 @@ namespace PhotoGallery.Services
             else
             {
                 Log.Info(TAG, "Got a new result: " + resultId);
+
+                var i = PhotoGalleryActivity.NewIntent(this);
+                var pi = PendingIntent.GetActivity(this, 0, i, 0);
+
+                var notification = new NotificationCompat.Builder(this)
+                    .SetTicker(Resources.GetString(Resource.String.new_pictures_title))
+                    .SetSmallIcon(Android.Resource.Drawable.IcMenuReportImage)
+                    .SetContentTitle(Resources.GetString(Resource.String.new_pictures_title))
+                    .SetContentText(Resources.GetString(Resource.String.new_pictures_text))
+                    .SetContentIntent(pi)
+                    .SetAutoCancel(true)
+                    .Build();
+
+                NotificationManagerCompat.From(this).Notify(0, notification);
             }
 
             QueryPreferences.SetLastResultId(this, resultId);
