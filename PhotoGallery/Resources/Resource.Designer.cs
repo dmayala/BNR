@@ -1489,8 +1489,8 @@ namespace PhotoGallery
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060063
-			public const int ClearMenuItem = 2131099747;
+			// aapt resource value: 0x7f060065
+			public const int ClearMenuItem = 2131099749;
 			
 			// aapt resource value: 0x7f060051
 			public const int FragmentContainer = 2131099729;
@@ -1505,10 +1505,16 @@ namespace PhotoGallery
 			public const int PhotoGalleryRecyclerViewFragment = 2131099744;
 			
 			// aapt resource value: 0x7f060062
-			public const int SearchMenuItem = 2131099746;
+			public const int PhotoPageProgressBarFragment = 2131099746;
+			
+			// aapt resource value: 0x7f060063
+			public const int PhotoPageWebViewFragment = 2131099747;
 			
 			// aapt resource value: 0x7f060064
-			public const int TogglePollingMenuItem = 2131099748;
+			public const int SearchMenuItem = 2131099748;
+			
+			// aapt resource value: 0x7f060066
+			public const int TogglePollingMenuItem = 2131099750;
 			
 			// aapt resource value: 0x7f060053
 			public const int action0 = 2131099731;
@@ -1942,16 +1948,19 @@ namespace PhotoGallery
 			public const int PhotoGalleryFragment = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int select_dialog_item_material = 2130903076;
+			public const int PhotoPageFragment = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int select_dialog_multichoice_material = 2130903077;
+			public const int select_dialog_item_material = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int select_dialog_singlechoice_material = 2130903078;
+			public const int select_dialog_multichoice_material = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int support_simple_spinner_dropdown_item = 2130903079;
+			public const int select_dialog_singlechoice_material = 2130903079;
+			
+			// aapt resource value: 0x7f030028
+			public const int support_simple_spinner_dropdown_item = 2130903080;
 			
 			static Layout()
 			{

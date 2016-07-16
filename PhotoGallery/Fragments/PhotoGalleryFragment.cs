@@ -4,6 +4,7 @@ using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using PhotoGallery.Activities;
 using PhotoGallery.Models;
 using PhotoGallery.Services;
 using PhotoGallery.Utils;
@@ -178,8 +179,9 @@ namespace PhotoGallery.Fragments
             _itemImageView = itemView.FindViewById<ImageView>(Resource.Id.PhotoGalleryImageViewFragment);
             itemView.Click += (sender, e) =>
             {
-                var i = new Intent(Intent.ActionView, _galleryItem.GetPhotoPageUri());
-                itemView.Context.StartActivity(i);
+                var context = itemView.Context;
+                var i = PhotoPageActivity.NewIntent(context, _galleryItem.GetPhotoPageUri());
+                context.StartActivity(i);
             };
         }
 

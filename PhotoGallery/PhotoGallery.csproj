@@ -95,8 +95,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\PhotoGalleryActivity.cs" />
+    <Compile Include="Activities\PhotoPageActivity.cs" />
     <Compile Include="Activities\SingleFragmentActivity.cs" />
     <Compile Include="Fragments\PhotoGalleryFragment.cs" />
+    <Compile Include="Fragments\PhotoPageFragment.cs" />
     <Compile Include="Fragments\VisibleFragment.cs" />
     <Compile Include="Models\FlickrPhotos.cs" />
     <Compile Include="Models\FlickrResponse.cs" />
@@ -151,6 +153,9 @@
       <Visible>False</Visible>
       <Version>2.5.2.2</Version>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PhotoPageFragment.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
