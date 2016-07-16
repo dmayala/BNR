@@ -1,3 +1,4 @@
+using Android.Net;
 using Newtonsoft.Json;
 
 namespace PhotoGallery.Models
@@ -10,6 +11,13 @@ namespace PhotoGallery.Models
         public string Caption { get; set; }
         [JsonProperty(PropertyName = "url_s")]
         public string Url { get; set; }
+        [JsonProperty(PropertyName = "owner")]
+        public string Owner { get; set; }
+
+        public Uri GetPhotoPageUri()
+        {
+            return Uri.Parse($"http://www.flickr.com/photos/{Owner}/{Id}");
+        }
 
         public override string ToString()
         {

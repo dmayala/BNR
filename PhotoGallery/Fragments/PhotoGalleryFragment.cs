@@ -171,14 +171,21 @@ namespace PhotoGallery.Fragments
     public class PhotoHolder : RecyclerView.ViewHolder
     {
         private ImageView _itemImageView;
+        private GalleryItem _galleryItem;
 
         public PhotoHolder(View itemView) : base(itemView)
         {
             _itemImageView = itemView.FindViewById<ImageView>(Resource.Id.PhotoGalleryImageViewFragment);
+            itemView.Click += (sender, e) =>
+            {
+                var i = new Intent(Intent.ActionView, _galleryItem.GetPhotoPageUri());
+                itemView.Context.StartActivity(i);
+            };
         }
 
         public void BindGalleyItem(Context context, GalleryItem galleryItem)
         {
+            _galleryItem = galleryItem;
             Picasso.With(context)
                 .Load(galleryItem.Url)
                 .Placeholder(Resource.Drawable.bill_up_close)
