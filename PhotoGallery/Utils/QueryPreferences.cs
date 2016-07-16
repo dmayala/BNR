@@ -7,6 +7,7 @@ namespace PhotoGallery.Utils
     {
         const string PrefSearchQuery = "searchQuery";
         const string PrefLastResultId = "lastResultId";
+        const string PrefIsAlarmOn = "isAlarmOn";
 
         public static string GetStoredQuery(Context context)
         {
@@ -33,6 +34,20 @@ namespace PhotoGallery.Utils
             PreferenceManager.GetDefaultSharedPreferences(context)
                 .Edit()
                 .PutString(PrefLastResultId, lastResultId)
+                .Apply();
+        }
+
+        public static bool IsAlarmOn(Context context)
+        {
+            return PreferenceManager.GetDefaultSharedPreferences(context)
+                .GetBoolean(PrefIsAlarmOn, false);
+        }
+
+        public static void SetAlarmOn(Context context, bool isOn)
+        {
+            PreferenceManager.GetDefaultSharedPreferences(context)
+                .Edit()
+                .PutBoolean(PrefIsAlarmOn, isOn)
                 .Apply();
         }
     }

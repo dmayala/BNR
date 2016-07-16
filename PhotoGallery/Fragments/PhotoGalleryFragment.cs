@@ -15,7 +15,7 @@ using SearchView = Android.Support.V7.Widget.SearchView;
 
 namespace PhotoGallery.Fragments
 {
-    public class PhotoGalleryFragment : Fragment, SearchView.IOnClickListener
+    public class PhotoGalleryFragment : VisibleFragment, SearchView.IOnClickListener
     {
         const string TAG = "PhotoGalleryFragment";
 

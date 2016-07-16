@@ -15,7 +15,13 @@ namespace PhotoGallery.Services
     public class PollService : IntentService
     {
         const string TAG = "PollService";
-        const long PollInterval = AlarmManager.IntervalFifteenMinutes;
+
+        const long PollInterval = 1000 * 60; // AlarmManager.IntervalFifteenMinutes
+
+        public const string ActionShowNotification = "la.daya.photogallery.SHOW_NOTIFICATION";
+        public const string PermPrivate = "la.daya.photogallery.PRIVATE";
+        public const string RequestCode = "RequestCode";
+        public const string Notification = "Notification";
 
         public static Intent NewIntent(Context context)
         {
@@ -43,6 +49,8 @@ namespace PhotoGallery.Services
                 alarmManager.Cancel(pi);
                 pi.Cancel();
             }
+
+            QueryPreferences.SetAlarmOn(context, isOn);
         }
 
         public static bool IsServiceAlarmOn(Context context)
@@ -92,10 +100,18 @@ namespace PhotoGallery.Services
                     .SetAutoCancel(true)
                     .Build();
 
-                NotificationManagerCompat.From(this).Notify(0, notification);
+                ShowBackgroundNotification(0, notification);
             }
 
             QueryPreferences.SetLastResultId(this, resultId);
+        }
+
+        private void ShowBackgroundNotification(int requestCode, Notification notification)
+        {
+            var i = new Intent(ActionShowNotification);
+            i.PutExtra(RequestCode, requestCode);
+            i.PutExtra(Notification, notification);
+            SendOrderedBroadcast(i, PermPrivate, null, null, Result.Ok, null, null);
         }
 
         private bool isNetworkAvailableAndConnected()
