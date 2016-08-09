@@ -5,7 +5,7 @@ using UIKit;
 
 namespace WorldTrotter
 {
-    public partial class ConversionViewController : UIViewController, IUITextFieldDelegate
+    public partial class ConversionViewController : UIViewController
     {
         private double _fahrenheitValue;
 
@@ -25,7 +25,9 @@ namespace WorldTrotter
         {
             base.ViewDidLoad();
 
-            FahrenheitTextField.Delegate = this;
+            Debug.WriteLine("ConversionViewController loaded its view.");
+
+            FahrenheitTextField.ShouldChangeCharacters = ShouldChangeCharacters;
             FahrenheitTextField.EditingChanged += FahrenheitTextField_EditingChanged;
             View.AddGestureRecognizer(new UITapGestureRecognizer(() => FahrenheitTextField.ResignFirstResponder()));
         }
@@ -44,9 +46,6 @@ namespace WorldTrotter
             }
         }
 
-        #region IUITextFieldDelegate
-
-        [Export("textField:shouldChangeCharactersInRange:replacementString:")]
         public bool ShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
         {
             int existingTextHasDecimalSeparator = textField.Text.IndexOf(".");
@@ -59,7 +58,5 @@ namespace WorldTrotter
 
             return true;
         }
-
-        #endregion
     }
 }

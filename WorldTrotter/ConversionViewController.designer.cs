@@ -20,7 +20,7 @@ namespace WorldTrotter
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITapGestureRecognizer CVTapGesture { get; set; }
+        UIKit.UITabBarItem Convert { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -33,9 +33,9 @@ namespace WorldTrotter
                 CelsiusLabel = null;
             }
 
-            if (CVTapGesture != null) {
-                CVTapGesture.Dispose ();
-                CVTapGesture = null;
+            if (Convert != null) {
+                Convert.Dispose ();
+                Convert = null;
             }
 
             if (FahrenheitTextField != null) {
