@@ -14,8 +14,25 @@ namespace Homepwner
     [Register ("ItemsViewController")]
     partial class ItemsViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton AddButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton EditButton { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (AddButton != null) {
+                AddButton.Dispose ();
+                AddButton = null;
+            }
+
+            if (EditButton != null) {
+                EditButton.Dispose ();
+                EditButton = null;
+            }
         }
     }
 }
