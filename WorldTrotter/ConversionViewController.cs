@@ -1,6 +1,7 @@
 using Foundation;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using UIKit;
 
 namespace WorldTrotter
@@ -35,7 +36,11 @@ namespace WorldTrotter
         private void FahrenheitTextField_EditingChanged(object sender, EventArgs e)
         {
             var text = FahrenheitTextField.Text;
-            if (double.TryParse(text, out _fahrenheitValue))
+
+            var numberFormatter = new NSNumberFormatter();
+            var value = numberFormatter.NumberFromString(text);
+
+            if (double.TryParse(value?.StringValue, out _fahrenheitValue))
             {
                 double celsius = (_fahrenheitValue - 32) * (5.0 / 9.0);
                 CelsiusLabel.Text = string.Format("{0:0.#}", celsius);
@@ -48,8 +53,9 @@ namespace WorldTrotter
 
         public bool ShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
         {
-            int existingTextHasDecimalSeparator = textField.Text.IndexOf(".");
-            int replacementTextHasDecimalSeparator = replacementString.IndexOf(".");
+            var decimalSeparator = NSLocale.CurrentLocale.DecimalSeparator;
+            int existingTextHasDecimalSeparator = textField.Text.IndexOf(decimalSeparator);
+            int replacementTextHasDecimalSeparator = replacementString.IndexOf(decimalSeparator);
 
             if (existingTextHasDecimalSeparator > -1 && replacementTextHasDecimalSeparator > -1)
             {

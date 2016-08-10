@@ -83,11 +83,7 @@
         <!--Map-->
         <scene sceneID="63">
             <objects>
-                <viewController id="64" sceneMemberID="viewController" customClass="MapViewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="337"/>
-                        <viewControllerLayoutGuide type="bottom" id="338"/>
-                    </layoutGuides>
+                <viewController id="64" customClass="MapViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" image="MapIcon" id="254"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -116,6 +112,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ConvertIcon" width="16" height="16"/>
         <image name="MapIcon" width="49" height="33"/>
     </resources>
 </document>
