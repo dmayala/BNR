@@ -85,6 +85,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="DetailViewController.cs" />
+    <Compile Include="DetailViewController.designer.cs">
+      <DependentUpon>DetailViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemCell.cs" />
     <Compile Include="ItemCell.designer.cs">
       <DependentUpon>ItemCell.cs</DependentUpon>

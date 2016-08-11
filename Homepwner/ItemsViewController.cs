@@ -40,10 +40,24 @@ namespace Homepwner
             // Release any cached data, images, etc that aren't in use.
         }
 
-
         public override nint RowsInSection(UITableView tableView, nint section)
         {
             return _itemStore.AllItems.Count;
+        }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            // If the triggered segue is the "ShowItem" segue
+            if (segue.Identifier == "ShowItem")
+            {
+                // Figure out which row was just tapped
+                var row = TableView.IndexPathForSelectedRow.Row;
+
+                // Get the item associated with this row and pass it along
+                var item = _itemStore.AllItems[row];
+                var detailViewController = segue.DestinationViewController as DetailViewController;
+                detailViewController.Item = item;
+            }
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
