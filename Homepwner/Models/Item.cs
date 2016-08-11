@@ -11,6 +11,7 @@ namespace Homepwner.Models
         public string Name { get; set; }
         public int ValueInDollars { get; set; }
         public string SerialNumber { get; set; }
+        public string ImageKey { get; set; }
         public DateTime DateCreated { get; } = DateTime.Now;
 
         public Item(string name, int valueInDollars, string serialNumber)
@@ -18,6 +19,7 @@ namespace Homepwner.Models
             Name = name;
             ValueInDollars = valueInDollars;
             SerialNumber = serialNumber;
+            ImageKey = Guid.NewGuid().ToString();
             DateCreated = DateTime.Now;
         }
 

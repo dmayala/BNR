@@ -20,6 +20,10 @@ namespace Homepwner
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView ImageView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField NameField { get; set; }
 
         [Outlet]
@@ -34,11 +38,20 @@ namespace Homepwner
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void BackgroundTapped (UIKit.UITapGestureRecognizer sender);
 
+        [Action ("TakePicture:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void TakePicture (UIKit.UIBarButtonItem sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (DateLabel != null) {
                 DateLabel.Dispose ();
                 DateLabel = null;
+            }
+
+            if (ImageView != null) {
+                ImageView.Dispose ();
+                ImageView = null;
             }
 
             if (NameField != null) {

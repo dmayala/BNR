@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Stores\ImageStore.cs" />
     <Compile Include="Stores\ItemStore.cs" />
     <None Include="Info.plist" />
     <Compile Include="Models\Item.cs" />

@@ -10,6 +10,7 @@ namespace Homepwner
     public partial class ItemsViewController : UITableViewController
     {
         private ItemStore _itemStore;
+        private ImageStore _imageStore;
 
         public ItemsViewController(IntPtr handle) : base(handle)
         {
@@ -20,6 +21,7 @@ namespace Homepwner
         {
             base.ViewDidLoad();
             _itemStore = App.Container.Resolve<ItemStore>();
+            _imageStore = App.Container.Resolve<ImageStore>();
 
             AddButton.Clicked += AddButton_Clicked;
 
@@ -104,6 +106,9 @@ namespace Homepwner
                 {
                     // Remove the item from the store
                     _itemStore.RemoveItem(item);
+
+                    // Remove the item's image from the image store
+                    _imageStore.DeleteImageForKey(item.ImageKey);
 
                     // Also remove that row from the table view with an animation
                     TableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);

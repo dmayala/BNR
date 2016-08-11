@@ -11,6 +11,7 @@ namespace Homepwner
         {
             Container = new UnityContainer();
             Container.RegisterInstance(new ItemStore());
+            Container.RegisterInstance(new ImageStore());
         }
     }
 }
