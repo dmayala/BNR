@@ -13,6 +13,7 @@ namespace Homepwner
 
         public ItemsViewController(IntPtr handle) : base(handle)
         {
+            NavigationItem.LeftBarButtonItem = EditButtonItem;
         }
 
         public override void ViewDidLoad()
@@ -20,18 +21,17 @@ namespace Homepwner
             base.ViewDidLoad();
             _itemStore = App.Container.Resolve<ItemStore>();
 
-            EditButton.TouchUpInside += EditButton_TouchUpInside;
-            AddButton.TouchUpInside += AddButton_TouchUpInside;
-
-            // Get the height of the status bar
-            var statusBarHeight = UIApplication.SharedApplication.StatusBarFrame.Height;
-
-            var insets = new UIEdgeInsets(statusBarHeight, 0, 0, 0);
-            TableView.ContentInset = insets;
-            TableView.ScrollIndicatorInsets = insets;
+            AddButton.Clicked += AddButton_Clicked;
 
             TableView.RowHeight = UITableView.AutomaticDimension;
             TableView.EstimatedRowHeight = 65;
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            TableView.ReloadData();
         }
 
         public override void DidReceiveMemoryWarning()
@@ -115,27 +115,7 @@ namespace Homepwner
             }
         }
 
-        private void EditButton_TouchUpInside(object sender, EventArgs e)
-        {
-            if (Editing)
-            {
-                // Change text of button to inform user of state
-                EditButton.SetTitle("Edit", UIControlState.Normal);
-
-                // Turn off editing mode
-                SetEditing(false, true);
-            }
-            else
-            {
-                // Change text of button to inform user of state
-                EditButton.SetTitle("Done", UIControlState.Normal);
-
-                // Enter editing mode
-                SetEditing(true, true);
-            }
-        }
-
-        private void AddButton_TouchUpInside(object sender, EventArgs e)
+        private void AddButton_Clicked(object sender, EventArgs e)
         {
             // Create a new item and add it to the store
             var newItem = _itemStore.CreateItem();

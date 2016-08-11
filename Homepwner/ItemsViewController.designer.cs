@@ -16,11 +16,11 @@ namespace Homepwner
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton AddButton { get; set; }
+        UIKit.UIBarButtonItem AddButton { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton EditButton { get; set; }
+        UIKit.UIBarButtonItem EditButton { get; set; }
 
         void ReleaseDesignerOutlets ()
         {

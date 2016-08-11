@@ -30,6 +30,10 @@ namespace Homepwner
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField ValueField { get; set; }
 
+        [Action ("BackgroundTapped:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BackgroundTapped (UIKit.UITapGestureRecognizer sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (DateLabel != null) {
