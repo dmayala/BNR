@@ -34,7 +34,7 @@ namespace Homepwner.Models
 
             var randomName = $"{randomAdjective} {randomNoun}";
             var randomValue = rand.Next(100);
-            var randomSerial = new Guid().ToString().Split('-')[0];
+            var randomSerial = Guid.NewGuid().ToString().Split('-')[0];
 
             return new Item(randomName, randomValue, randomSerial);
         }

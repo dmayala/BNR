@@ -29,6 +29,9 @@ namespace Homepwner
             var insets = new UIEdgeInsets(statusBarHeight, 0, 0, 0);
             TableView.ContentInset = insets;
             TableView.ScrollIndicatorInsets = insets;
+
+            TableView.RowHeight = UITableView.AutomaticDimension;
+            TableView.EstimatedRowHeight = 65;
         }
 
         public override void DidReceiveMemoryWarning()
@@ -46,13 +49,18 @@ namespace Homepwner
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // Get a new or recycled cel
-            var cell = tableView.DequeueReusableCell("UITableViewCell", indexPath);
+            var cell = tableView.DequeueReusableCell("ItemCell", indexPath) as ItemCell;
+
+            // Update the labels for the new preferred text size
+            cell.UpdateLabels();
 
             // Set the text on cell with description of the item
             var item = _itemStore.AllItems[indexPath.Row];
 
-            cell.TextLabel.Text = item.Name;
-            cell.DetailTextLabel.Text = $"${item.ValueInDollars}";
+            // Configure the cell with the Item
+            cell.NameLabel.Text = item.Name;
+            cell.SerialNumberLabel.Text = item.SerialNumber;
+            cell.ValueLabel.Text = $"${item.ValueInDollars}";
 
             return cell;
         }
