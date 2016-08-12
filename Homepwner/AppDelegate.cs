@@ -1,5 +1,8 @@
 ﻿using Foundation;
+using Homepwner.Stores;
 using UIKit;
+using Microsoft.Practices.Unity;
+using System.Diagnostics;
 
 namespace Homepwner
 {
@@ -19,8 +22,6 @@ namespace Homepwner
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-            // Override point for customization after application launch.
-            // If not required for your application you can safely delete this method
             App.Initialize();
             return true;
         }
@@ -35,8 +36,15 @@ namespace Homepwner
 
         public override void DidEnterBackground(UIApplication application)
         {
-            // Use this method to release shared resources, save user data, invalidate timers and store the application state.
-            // If your application supports background exection this method is called instead of WillTerminate when the user quits.
+            bool success = App.Container.Resolve<ItemStore>().SaveChanges();
+            if (success)
+            {
+                Debug.WriteLine("Saved all of the Items");
+            }
+            else
+            {
+                Debug.WriteLine("Could not save any of the Items");
+            }
         }
 
         public override void WillEnterForeground(UIApplication application)

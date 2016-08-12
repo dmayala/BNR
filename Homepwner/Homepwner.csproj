@@ -89,6 +89,7 @@
     <Compile Include="DetailViewController.designer.cs">
       <DependentUpon>DetailViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\NSDateExtensions.cs" />
     <Compile Include="ItemCell.cs" />
     <Compile Include="ItemCell.designer.cs">
       <DependentUpon>ItemCell.cs</DependentUpon>

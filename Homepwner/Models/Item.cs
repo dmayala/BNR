@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Foundation;
+using System;
+using Homepwner.Extensions;
 
 namespace Homepwner.Models
 {
-    public class Item
+    public class Item : NSCoding
     {
         private static readonly Random rand = new Random();
 
@@ -23,6 +23,18 @@ namespace Homepwner.Models
             DateCreated = DateTime.Now;
         }
 
+        [Export("initWithCoder:")]
+        public Item(NSCoder decoder)
+        {
+            Name = decoder.DecodeObject("Name").ToString();
+            ValueInDollars = decoder.DecodeInt("ValueInDollars");
+            SerialNumber = decoder.DecodeObject("SerialNumber").ToString();
+            ImageKey = decoder.DecodeObject("ImageKey").ToString();
+
+            var date = decoder.DecodeObject("DateCreated") as NSDate;
+            DateCreated = date.ToDateTime();
+        }
+
         public static Item NewRandomItem()
         {
             var adjectives = new string[] { "Fluffy", "Rusty", "Shiny" };
@@ -39,6 +51,15 @@ namespace Homepwner.Models
             var randomSerial = Guid.NewGuid().ToString().Split('-')[0];
 
             return new Item(randomName, randomValue, randomSerial);
+        }
+
+        public override void EncodeTo(NSCoder encoder)
+        {
+            encoder.Encode(new NSString(Name), "Name");
+            encoder.Encode(ValueInDollars, "ValueInDollars");
+            encoder.Encode(new NSString(SerialNumber), "SerialNumber");
+            encoder.Encode(new NSString(ImageKey), "ImageKey");
+            encoder.Encode(DateCreated.ToNSDate(), "DateCreated");
         }
     }
 }
