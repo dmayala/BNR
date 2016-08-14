@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldTrotter", "WorldTrotte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homepwner", "Homepwner\Homepwner.csproj", "{5E76EF35-E59D-46EF-B962-F2F3F10BE135}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photorama", "Photorama\Photorama.csproj", "{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -389,6 +391,30 @@ Global
 		{5E76EF35-E59D-46EF-B962-F2F3F10BE135}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{5E76EF35-E59D-46EF-B962-F2F3F10BE135}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{5E76EF35-E59D-46EF-B962-F2F3F10BE135}.Release|x86.ActiveCfg = Release|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Ad-Hoc|Any CPU.ActiveCfg = Ad-Hoc|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhoneSimulator
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Ad-Hoc|x86.ActiveCfg = Ad-Hoc|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.AppStore|Any CPU.ActiveCfg = AppStore|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.AppStore|x86.ActiveCfg = AppStore|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Debug|Any CPU.ActiveCfg = Debug|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Debug|iPhone.Build.0 = Debug|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Debug|x86.ActiveCfg = Debug|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Release|iPhone.ActiveCfg = Release|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Release|iPhone.Build.0 = Release|iPhone
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9}.Release|x86.ActiveCfg = Release|iPhone
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -403,5 +429,6 @@ Global
 		{B5664274-F920-4B0A-A34A-F641C267543C} = {F56671B9-A978-4F37-A9E1-C2C322A7C0FD}
 		{2C246660-7FE4-4EBA-8939-428B83EAFEC9} = {F56671B9-A978-4F37-A9E1-C2C322A7C0FD}
 		{5E76EF35-E59D-46EF-B962-F2F3F10BE135} = {F56671B9-A978-4F37-A9E1-C2C322A7C0FD}
+		{9691CC64-5DA6-44AC-BEF0-C622A3142ED9} = {F56671B9-A978-4F37-A9E1-C2C322A7C0FD}
 	EndGlobalSection
 EndGlobal
