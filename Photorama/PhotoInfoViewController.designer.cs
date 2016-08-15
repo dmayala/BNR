@@ -11,18 +11,18 @@ using UIKit;
 
 namespace Photorama
 {
-    [Register ("PhotosViewController")]
-    partial class PhotosViewController
+    [Register ("PhotoInfoViewController")]
+    partial class PhotoInfoViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UICollectionView CollectionView { get; set; }
+        UIKit.UIImageView ImageView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (CollectionView != null) {
-                CollectionView.Dispose ();
-                CollectionView = null;
+            if (ImageView != null) {
+                ImageView.Dispose ();
+                ImageView = null;
             }
         }
     }

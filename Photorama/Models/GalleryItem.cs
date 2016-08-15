@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using UIKit;
 
 namespace Photorama.Models
 {
@@ -13,6 +14,7 @@ namespace Photorama.Models
         public string RemoteUrl { get; set; }
         [JsonProperty(PropertyName = "datetaken")]
         public DateTime DateTaken { get; set; }
+        public UIImage Image { get; set; }
 
         public override string ToString()
         {

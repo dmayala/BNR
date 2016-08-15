@@ -35,13 +35,21 @@ namespace Photorama.Utils
 
         public async Task<UIImage> FetchImageForPhotoAsync(GalleryItem item)
         {
+
+            if (item.Image != null)
+            {
+                return item.Image;
+            }
+
             var photoUrl = item.RemoteUrl;
             if (!String.IsNullOrEmpty(photoUrl))
             {
                 using (var client = new HttpClient())
                 {
                     var response = await client.GetByteArrayAsync(photoUrl);
-                    return new UIImage(NSData.FromArray(response));
+                    var image = new UIImage(NSData.FromArray(response));
+                    item.Image = image;
+                    return image;
                 }
             }
             return null;

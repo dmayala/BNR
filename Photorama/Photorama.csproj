@@ -89,12 +89,20 @@
     <Compile Include="Models\FlickrPhotos.cs" />
     <Compile Include="Models\FlickrResponse.cs" />
     <Compile Include="Models\GalleryItem.cs" />
-    <Compile Include="Utils\FlickrApi.cs" />
-    <None Include="Info.plist" />
+    <Compile Include="Cells\PhotoCollectionViewCell.cs" />
+    <Compile Include="Cells\PhotoCollectionViewCell.designer.cs">
+      <DependentUpon>PhotoCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhotoInfoViewController.cs" />
+    <Compile Include="PhotoInfoViewController.designer.cs">
+      <DependentUpon>PhotoInfoViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="PhotosViewController.cs" />
     <Compile Include="PhotosViewController.designer.cs">
       <DependentUpon>PhotosViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\FlickrApi.cs" />
+    <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
   </ItemGroup>
